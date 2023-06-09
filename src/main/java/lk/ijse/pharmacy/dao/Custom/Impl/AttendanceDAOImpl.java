@@ -21,8 +21,8 @@ public class AttendanceDAOImpl implements AttendanceDAO {
     }
 
     @Override
-    public Attendance delete(String id) throws SQLException, ClassNotFoundException {
-        return null;
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
 

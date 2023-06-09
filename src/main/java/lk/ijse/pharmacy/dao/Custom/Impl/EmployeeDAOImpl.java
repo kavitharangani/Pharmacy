@@ -2,7 +2,6 @@ package lk.ijse.pharmacy.dao.Custom.Impl;
 
 import lk.ijse.pharmacy.dao.Custom.EmployeeDAO;
 import lk.ijse.pharmacy.dao.SQLUtil;
-import lk.ijse.pharmacy.entity.Customer;
 import lk.ijse.pharmacy.entity.Employee;
 import lk.ijse.pharmacy.model.EmployeeDTO;
 import lk.ijse.pharmacy.util.CrudUtil;
@@ -22,7 +21,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public Employee delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("DELETE FROM employee WHERE employeeId = ?", id);
 
     }

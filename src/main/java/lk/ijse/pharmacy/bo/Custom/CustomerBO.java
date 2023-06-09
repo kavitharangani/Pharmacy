@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public interface CustomerBO extends SuperBO {
     public boolean save(CustomerDTO dto) throws SQLException, ClassNotFoundException ;
 
-    public Customer delete(String id) throws SQLException, ClassNotFoundException ;
+    public boolean delete(String id) throws SQLException, ClassNotFoundException ;
 
     public ArrayList<Customer> countCustomers() throws SQLException, ClassNotFoundException ;
 

@@ -15,7 +15,7 @@ public interface MedicineBO {
 
     public boolean save(Medicine medicine) throws SQLException, ClassNotFoundException ;
 
-    public  Medicine search(String id) throws SQLException ;
+    public  Medicine search(String id) throws SQLException, ClassNotFoundException;
 
     public  boolean update(Medicine medicine) throws SQLException, ClassNotFoundException ;
 

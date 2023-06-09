@@ -26,9 +26,10 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
     @Override
-    public Supplier delete(String id) throws SQLException, ClassNotFoundException {
-        return null;
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
     }
+
 
     @Override
     public ArrayList<Supplier> countCustomers() throws SQLException, ClassNotFoundException {

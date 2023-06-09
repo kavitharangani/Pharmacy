@@ -21,7 +21,7 @@ public class MedicineDAOImpl implements MedicineDAO {
     }
 
     @Override
-    public Medicine delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("DELETE FROM medicine WHERE mediCode =?", id);
 
     }

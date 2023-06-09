@@ -1,5 +1,6 @@
 package lk.ijse.pharmacy.bo.Custom;
 
+import lk.ijse.pharmacy.bo.SuperBO;
 import lk.ijse.pharmacy.db.DBConnection;
 import lk.ijse.pharmacy.util.CrudUtil;
 
@@ -8,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public interface OrderBO {
+public interface OrderBO extends SuperBO {
     public  boolean save(String orderId, LocalDate now, String customerId, double total) throws SQLException ;
 
     public  String generateNextOrderId() throws SQLException ;

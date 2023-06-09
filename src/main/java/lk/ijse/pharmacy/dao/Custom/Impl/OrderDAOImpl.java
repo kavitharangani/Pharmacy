@@ -25,8 +25,8 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public MysqlxCrud.Order delete(String id) throws SQLException, ClassNotFoundException {
-        return null;
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
     @Override

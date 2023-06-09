@@ -16,8 +16,8 @@ public class CartPlaceOrderDAOImpl implements CartPlaceOrderDAO {
     }
 
     @Override
-    public CartPlaceOrder delete(String id) throws SQLException, ClassNotFoundException {
-        return null;
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
     @Override

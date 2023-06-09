@@ -24,7 +24,7 @@ public class CustomerBOImpl implements CustomerBO, SuperBO {
     }
 
 
-    public Customer delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
         return customerDAO.delete(id);
 
     }

@@ -8,13 +8,13 @@ public class Medicine {
     private double unitPrize;
     private int qtyOnStock;
 
-    public Medicine(String code, String mediCode, String description, String name, String size, double price, int qty){
+    public Medicine(String mediCode){
         this.mediCode= this.mediCode;
         this.description= this.description;
         this.name= this.name;
         this.packSize=packSize;
-        this.unitPrize=unitPrize;
-        this.qtyOnStock=qtyOnStock;
+        this.unitPrize= this.unitPrize;
+        this.qtyOnStock= this.qtyOnStock;
     }
 
 
@@ -26,7 +26,11 @@ public class Medicine {
 
     }
 
-    public Medicine(String mediCode) {
+    public Medicine(String s, String code, String description, String name, String mediCode, Double unitPrize, Integer qtyOnStock) {
+
+    }
+
+    public Medicine(String mediCode, String description, String name, String packSize, Double unitPrize, Integer qtyOnStock) {
 
     }
 

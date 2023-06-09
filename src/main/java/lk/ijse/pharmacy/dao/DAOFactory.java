@@ -1,9 +1,7 @@
 package lk.ijse.pharmacy.dao;
 
 import lk.ijse.pharmacy.bo.Custom.Impl.AttendanceBOImpl;
-import lk.ijse.pharmacy.dao.Custom.Impl.AttendanceDAOImpl;
-import lk.ijse.pharmacy.dao.Custom.Impl.CustomerDAOImpl;
-import lk.ijse.pharmacy.dao.Custom.Impl.EmployeeDAOImpl;
+import lk.ijse.pharmacy.dao.Custom.Impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -15,7 +13,7 @@ public class DAOFactory {
     }
 
    public enum DAOTypes{
-        CUSTOMER,ATTENDANCE,EMPLOYEE
+        CUSTOMER,ATTENDANCE,EMPLOYEE,MEDICINE,SUPPLIER
    }
 
     public SuperDAO getDAO (DAOTypes types) {
@@ -26,6 +24,10 @@ public class DAOFactory {
                 return new AttendanceDAOImpl();
             case EMPLOYEE:
                 return new EmployeeDAOImpl();
+            case MEDICINE:
+                return new MedicineDAOImpl();
+            case SUPPLIER:
+                return new SupplierDAOImpl();
             default:
                 return null;
         }
