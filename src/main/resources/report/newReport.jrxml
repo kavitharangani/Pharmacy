@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="newReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="15752134-c2d1-4376-8bd8-d96570d9b22f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (5)"/>
+	<parameter name="Pha" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select i.description as name,i.unitPrice as unitPrice,oi.orderQTY , i.unitPrice*oi.orderQTY as subTotal  from medicine i inner join orderdetail oi on  i.mediCode=oi.medicode;]]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="description"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medicine"/>
+	</field>
+	<field name="unitPrice" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="unitPrice"/>
+		<property name="com.jaspersoft.studio.field.label" value="unitPrice"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medicine"/>
+	</field>
+	<field name="orderQTY" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="orderQTY"/>
+		<property name="com.jaspersoft.studio.field.label" value="orderQTY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orderdetail"/>
+	</field>
+	<field name="subTotal" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="subTotal"/>
+		<property name="com.jaspersoft.studio.field.label" value="subTotal"/>
+	</field>
+	<group name="name">
+		<groupExpression><![CDATA[$F{name}]]></groupExpression>
+	</group>
+	<group name="unitPrice">
+		<groupExpression><![CDATA[$F{unitPrice}]]></groupExpression>
+	</group>
+	<group name="orderQTY">
+		<groupExpression><![CDATA[$F{orderQTY}]]></groupExpression>
+	</group>
+	<group name="subTotal">
+		<groupExpression><![CDATA[$F{subTotal}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="160" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="440" y="130" width="100" height="30" uuid="2e0d3afa-ba7c-4fc5-8a28-99e8ce21593b"/>
+				<textElement>
+					<font fontName="Constantia" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="230" y="85" width="100" height="30" uuid="05b9760c-dc7d-4814-bd6d-344ca080ce93"/>
+				<textElement>
+					<font fontName="Cooper Black" size="20"/>
+				</textElement>
+				<text><![CDATA[INVOICE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="0" width="290" height="30" uuid="0f83b373-a769-4025-8e8e-3bb202fc759c"/>
+				<textElement rotation="None">
+					<font fontName="Franklin Gothic Book" size="20" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SANETHU PHARMACY (PVT) LTD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="35" width="310" height="50" uuid="95d9c657-b5a2-4f0b-82c8-65c286d24930"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Sanethu Pharmacy, Anuradhapura Road, Balalla                                  0718547123]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-2" y="-15" width="122" height="100" uuid="ba681815-538a-4024-9393-8889be72b8ca"/>
+				<imageExpression><![CDATA["E:/KaviProject/src/main/resources/img/LOGO.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="62" splitType="Stretch">
+			<line>
+				<reportElement x="-10" y="50" width="560" height="1" uuid="4616df51-1f82-48eb-95c5-d369934c5e00"/>
+			</line>
+			<staticText>
+				<reportElement x="-10" y="-20" width="150" height="50" uuid="1731d784-f17f-4322-b378-9bcb14797f57"/>
+				<textElement>
+					<font fontName="Algerian" size="14"/>
+				</textElement>
+				<text><![CDATA[CASHIER : Kavi          PHARMACY : Kavi]]></text>
+			</staticText>
+			<textField pattern="HH:mm">
+				<reportElement x="440" y="0" width="100" height="30" uuid="49427d98-b9e2-4417-9ca9-0967b271a97f"/>
+				<textElement>
+					<font fontName="Constantia" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="3149fee6-184a-4492-b010-f2838a680820">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a082a199-7c1c-4a37-bc24-12840c96a498"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14"/>
+				</textElement>
+				<text><![CDATA[name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="30" uuid="78158a11-69d9-4e00-a7b4-178f6d6305ad">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="67c88cc5-2186-437f-9884-9c7772ed0e3b"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14"/>
+				</textElement>
+				<text><![CDATA[unitPrice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="0" width="100" height="30" uuid="3c17e0db-dd22-4aff-9489-8e67d4127484">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0434ad42-bf26-4095-93f9-a521377a6944"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14"/>
+				</textElement>
+				<text><![CDATA[orderQTY]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-5" y="58" width="564" height="1" uuid="0b33a65a-f6be-4242-a4d4-b7f4323aa1b3"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="100" height="30" uuid="34ab2cfa-606c-4950-8316-f59e18db44c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a082a199-7c1c-4a37-bc24-12840c96a498"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="10" width="100" height="30" uuid="07862cb9-25b3-4e60-8964-b4058e995267">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="67c88cc5-2186-437f-9884-9c7772ed0e3b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{unitPrice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="10" width="100" height="30" uuid="b9b01a1b-1f1d-4561-b702-179cfd631bc7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0434ad42-bf26-4095-93f9-a521377a6944"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{orderQTY}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="55" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="15" width="550" height="1" uuid="8d40bbd2-50cc-4119-ba14-0ab160bffd96">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="25" width="100" height="30" uuid="1b6431b2-badd-4a6f-8882-e7350f07aadf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="233ce6ab-efe9-4b1c-94d9-b0f1f85b7074"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[subTotal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="405" y="25" width="100" height="30" uuid="ddc1328a-f769-4070-9045-99c43c146093">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="233ce6ab-efe9-4b1c-94d9-b0f1f85b7074"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="123" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="6" width="531" height="1" uuid="24b4c2c2-f155-4c1b-9189-1df3151fb4d4"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="130" y="60" width="280" height="30" uuid="ed09bf04-574e-4013-93c8-9750fc401ffd"/>
+				<textElement>
+					<font fontName="Footlight MT Light" size="20"/>
+				</textElement>
+				<text><![CDATA[WISH YOU GOOD HEALTH .....]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

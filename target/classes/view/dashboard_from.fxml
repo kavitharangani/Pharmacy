@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" opacity="0.61" prefHeight="814.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.DashboardFromController">
+   <children>
+      <AnchorPane fx:id="LoadContext" layoutX="254.0" prefHeight="814.0" prefWidth="943.0" style="-fx-background-color: black;" styleClass="edge-button" stylesheets="@../style/style.css">
+         <children>
+            <ImageView fitHeight="814.0" fitWidth="1252.0" layoutX="28.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/8998532_26094.jpg" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="763.0" layoutY="454.0" prefHeight="328.0" prefWidth="443.0" style="-fx-background-color: black;">
+               <children>
+                  <Label layoutX="45.0" layoutY="25.0" text="Monthly Income From Selling Item" textFill="#f8f4f4">
+                     <font>
+                        <Font name="System Bold Italic" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblMonthlyOrders" layoutX="163.0" layoutY="94.0" text=" 0.00" textFill="#eee2e2">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="52.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="180.0" fitWidth="180.0" layoutX="256.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/finance.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="73.0" layoutY="99.0" text="Rs . " textFill="#eee2e2">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="43.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="47.0" layoutY="53.0" prefHeight="200.0" prefWidth="269.0" style="-fx-background-color: #a29bfe;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <children>
+                  <Label layoutX="169.0" layoutY="14.0" text="Rs.">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="135.0" layoutY="123.0" text="TOTAL SALES">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font></Label>
+                  <ImageView fitHeight="79.0" fitWidth="103.0" layoutX="14.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/increase.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblTotalSales" layoutX="107.0" layoutY="61.0" prefHeight="39.0" prefWidth="159.0" text="0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <AnchorPane layoutX="346.0" layoutY="53.0" prefHeight="200.0" prefWidth="269.0" style="-fx-background-color: #dfe6e9;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <children>
+                  <Label fx:id="lblTotalOrders" layoutX="173.0" layoutY="54.0" prefHeight="39.0" prefWidth="71.0" text=" 0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="116.0" layoutY="120.0" text="TOTAL ORDERS">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="113.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/payment.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane layoutX="664.0" layoutY="53.0" prefHeight="200.0" prefWidth="269.0" style="-fx-background-color: #2ecc71;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <children>
+                  <Label fx:id="lblTotalCustomer" layoutX="174.0" layoutY="49.0" prefHeight="21.0" prefWidth="25.0" text=" 0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="83.0" layoutY="121.0" text="TOTAL CUSTOMERS">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="103.0" fitWidth="103.0" layoutX="20.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/rate.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane layoutX="976.0" layoutY="53.0" prefHeight="200.0" prefWidth="269.0" style="-fx-background-color: #1abc9c;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <children>
+                  <Label fx:id="lblTotalMedicine" layoutX="141.0" layoutY="40.0" prefHeight="39.0" prefWidth="103.0" text=" 0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="66.0" layoutY="119.0" text="MEDICINES COMPANY">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="103.0" fitWidth="103.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-vaccination-time-64.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <JFXButton layoutX="338.0" layoutY="291.0" onAction="#btnOnWhatsappAction" opacity="0.53" prefHeight="103.0" prefWidth="111.0" style="-fx-background-color: #F0D38A;" styleClass="edge-button" stylesheets="@../style/style.css" textFill="#1b1b1b" />
+            <ImageView fitHeight="85.0" fitWidth="90.0" layoutX="351.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/whatsapp%20(1).png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="543.0" layoutY="291.0" onAction="#btnOnFaceBookAction" opacity="0.53" prefHeight="103.0" prefWidth="111.0" style="-fx-background-color: #F0D38A;" styleClass="edge-button" stylesheets="@../style/style.css" textFill="#1b1b1b" />
+            <ImageView fitHeight="85.0" fitWidth="90.0" layoutX="556.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons8-facebook-48.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="79.0" fitWidth="85.0" layoutX="772.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/twitter%20(1).png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="756.0" layoutY="291.0" onAction="#btnOnTwitterAction" opacity="0.53" prefHeight="103.0" prefWidth="111.0" style="-fx-background-color: #F0D38A;" styleClass="edge-button" stylesheets="@../style/style.css" textFill="#f8dada" />
+            <JFXButton layoutX="958.0" layoutY="294.0" onAction="#btnOnInsterAction" opacity="0.53" prefHeight="103.0" prefWidth="111.0" style="-fx-background-color: #F0D38A;" styleClass="edge-button" stylesheets="@../style/style.css" textFill="#eed0d0" />
+            <ImageView fitHeight="329.0" fitWidth="344.0" layoutX="92.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Screenshot%202023-04-26%20220023.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="514.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/tracking%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="85.0" fitWidth="85.0" layoutX="971.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/instagram.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane focusTraversable="true" prefHeight="814.0" prefWidth="281.0" style="-fx-background-color: black;" stylesheets="@../style/style.css">
+         <children>
+            <ImageView fitHeight="180.0" fitWidth="174.0" layoutX="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/statistics.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="331.0" onAction="#btnEmployeeOnAction" prefHeight="48.0" prefWidth="237.0" ripplerFill="BLACK" style="-fx-background-color: white;" styleClass="edge-button" text="EMPLOYEE" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="535.0" onAction="#btnSupplierOnAction" prefHeight="48.0" prefWidth="237.0" ripplerFill="BLACK" style="-fx-background-color: white;" styleClass="edge-button" text="SUPPLIER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="15.0" layoutY="602.0" onAction="#btnMedicineOnAction" prefHeight="48.0" prefWidth="237.0" ripplerFill="BLACK" style="-fx-background-color: white;" styleClass="edge-button" text="MEDICINE" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="15.0" layoutY="669.0" onAction="#btnPlaceOrderOnAction" prefHeight="48.0" prefWidth="237.0" ripplerFill="BLACK" style="-fx-background-color: white;" styleClass="edge-button" text="PLACEORDER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="739.0" onAction="#btnPlaceSupplierOnAction" prefHeight="48.0" prefWidth="237.0" ripplerFill="BLACK" style="-fx-background-color: white;" styleClass="edge-button" text="PLACESUPPLIER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="267.0" onAction="#btnLgoutOnAction" prefHeight="48.0" prefWidth="237.0" ripplerFill="BLACK" style="-fx-background-color: white;" styleClass="edge-button" text="LOGOUT" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="471.0" onAction="#btnCustomerOnAction" prefHeight="48.0" prefWidth="237.0" ripplerFill="BLACK" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css" text="CUSTOMER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="400.0" onAction="#btnAttendanceOnAction" prefHeight="48.0" prefWidth="237.0" ripplerFill="BLACK" style="-fx-background-color: white;" styleClass="edge-button" text="ATTENDANCE" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="15.0" layoutY="205.0" onAction="#btnhomeOnAction" prefHeight="48.0" prefWidth="237.0" ripplerFill="BLACK" style="-fx-background-color: white;" styleClass="edge-button" text="HOME" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

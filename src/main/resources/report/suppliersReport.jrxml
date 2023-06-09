@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="supplier" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="624aa0de-f46d-4391-8065-4e4e5713a159">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (3)"/>
+    <queryString language="SQL">
+        <![CDATA[SELECT * FROM  pharmacy.supplieorderdetail]]>
+    </queryString>
+    <field name="suppliesOrderId" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="suppliesOrderId"/>
+        <property name="com.jaspersoft.studio.field.label" value="suppliesOrderId"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="supplieorderdetail"/>
+    </field>
+    <field name="mediCode" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="mediCode"/>
+        <property name="com.jaspersoft.studio.field.label" value="mediCode"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="supplieorderdetail"/>
+    </field>
+    <field name="orderQTY" class="java.lang.Integer">
+        <property name="com.jaspersoft.studio.field.name" value="orderQTY"/>
+        <property name="com.jaspersoft.studio.field.label" value="orderQTY"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="supplieorderdetail"/>
+    </field>
+    <field name="total" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="total"/>
+        <property name="com.jaspersoft.studio.field.label" value="total"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="supplieorderdetail"/>
+    </field>
+    <variable name="total1" class="java.lang.Integer" resetType="Column" calculation="Count">
+        <variableExpression><![CDATA[$F{total}]]></variableExpression>
+    </variable>
+    <group name="suppliesOrderId">
+        <groupExpression><![CDATA[$F{suppliesOrderId}]]></groupExpression>
+    </group>
+    <group name="mediCode">
+        <groupExpression><![CDATA[$F{mediCode}]]></groupExpression>
+    </group>
+    <group name="orderQTY">
+        <groupExpression><![CDATA[$F{orderQTY}]]></groupExpression>
+    </group>
+    <group name="total">
+        <groupExpression><![CDATA[$F{total}]]></groupExpression>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="79" splitType="Stretch">
+            <staticText>
+                <reportElement x="110" y="10" width="290" height="30" uuid="d1954941-9af8-4a36-b47b-f94f559843e0"/>
+                <textElement textAlignment="Justified">
+                    <font fontName="Arial Rounded MT Bold" size="15"/>
+                </textElement>
+                <text><![CDATA[PHARMCY SUPPLIER ORDER]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="35" splitType="Stretch">
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="10" y="5" width="100" height="30" uuid="f614eeab-0c64-4872-92f9-239d45d7032c"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+            <textField pattern="HH:mm">
+                <reportElement x="370" y="5" width="100" height="30" uuid="b694ad27-280b-47e8-a45d-4db14d70da75"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="71" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="100" height="30" uuid="d719e4e9-1d9f-4234-a18d-7c3668a7e265">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="47ca4004-fae3-4caf-9db1-07b79cab5a3a"/>
+                </reportElement>
+                <text><![CDATA[suppliesOrderId]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="160" y="0" width="100" height="30" uuid="59cf598d-e80c-4aaa-b49d-ee8cd8e19527">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b0e6c267-a8f6-4e85-9220-8859e12383c4"/>
+                </reportElement>
+                <text><![CDATA[mediCode]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="330" y="0" width="100" height="30" uuid="a8d4a176-d5b3-4dc9-b7b6-bcb896250dac">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cf6d309f-0efc-408c-999d-e1ac965c97f6"/>
+                </reportElement>
+                <text><![CDATA[orderQTY]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="475" y="0" width="100" height="30" uuid="9eca90e1-fcd7-4092-bbbe-f095e8447721">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd6c745f-f64e-4ec2-8445-e3f9f6e6da9d"/>
+                </reportElement>
+                <text><![CDATA[total]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="125" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="100" height="30" uuid="38d9d552-7a00-4811-9e0a-eab96c7719ba">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="47ca4004-fae3-4caf-9db1-07b79cab5a3a"/>
+                </reportElement>
+                <textElement>
+                    <font fontName="Arial Rounded MT Bold"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{suppliesOrderId}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="160" y="0" width="100" height="30" uuid="da755f56-7e0a-4233-8642-62b21482e4a1">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b0e6c267-a8f6-4e85-9220-8859e12383c4"/>
+                </reportElement>
+                <textElement>
+                    <font fontName="Arial Rounded MT Bold"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mediCode}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="320" y="10" width="100" height="30" uuid="346d975a-1f61-40b2-9921-7b59a8b32da6">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cf6d309f-0efc-408c-999d-e1ac965c97f6"/>
+                </reportElement>
+                <textElement>
+                    <font fontName="Arial Rounded MT Bold"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{orderQTY}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="470" y="0" width="100" height="30" uuid="ab5453a4-4d77-470f-9522-961d4f4f16a3">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd6c745f-f64e-4ec2-8445-e3f9f6e6da9d"/>
+                </reportElement>
+                <textElement>
+                    <font fontName="Arial Rounded MT Bold"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

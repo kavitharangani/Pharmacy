@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="img">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/main/resources/img/KaviProject.zip!/" />
+      <root url="jar://$PROJECT_DIR$/main/resources/img/KaviProject5.zip!/" />
+      <root url="jar://$PROJECT_DIR$/main/resources/img/KaviProject6.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.MedicineFromController">
+   <children>
+      <ImageView fitHeight="964.0" fitWidth="1362.0" opacity="0.82" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: white;">
+         <image>
+            <Image url="@../img/9727709_26840.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="321.0" layoutY="134.0" opacity="0.97" prefHeight="496.0" prefWidth="795.0" style="-fx-background-color: black;" styleClass="edge-button" stylesheets="@../style/style.css">
+         <children>
+            <TextField fx:id="txtName" layoutX="393.0" layoutY="94.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="29.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtDescription" layoutX="393.0" layoutY="172.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="29.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtPrice" layoutX="393.0" layoutY="243.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="29.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtQty" layoutX="393.0" layoutY="313.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="29.0" />
+               </font>
+            </TextField>
+            <Label layoutX="51.0" layoutY="29.0" text="Medicine Id" textFill="#eee1e8">
+               <font>
+                  <Font name="Britannic Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="172.0" text="Description" textFill="#eee1e8">
+               <font>
+                  <Font name="Britannic Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="249.0" text="Unit Price" textFill="#eee1e8">
+               <font>
+                  <Font name="Britannic Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="313.0" prefHeight="41.0" prefWidth="229.0" text="qty on Stock" textFill="#eee1e8">
+               <font>
+                  <Font name="Britannic Bold" size="40.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtPackSize" layoutX="393.0" layoutY="391.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="29.0" />
+               </font>
+            </TextField>
+            <Label layoutX="53.0" layoutY="397.0" prefHeight="41.0" prefWidth="191.0" styleClass="edge-button" stylesheets="@../style/style.css" text="Pack Size" textFill="#eee1e8">
+               <font>
+                  <Font name="Britannic Bold" size="40.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtMeId2" layoutX="393.0" layoutY="23.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="29.0" />
+               </font>
+            </TextField>
+            <Label layoutX="50.0" layoutY="100.0" text="Medicine Name" textFill="#eee1e8">
+               <font>
+                  <Font name="Britannic Bold" size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="285.0" layoutY="31.0" text="WELCOME    MEDICINE...">
+         <font>
+            <Font name="Elephant" size="62.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#876ccd" />
+                  <Stop color="#0f034a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <ImageView fitHeight="191.0" fitWidth="272.0" layoutX="71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/pill.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="132.0" layoutY="657.0" prefHeight="127.0" prefWidth="1150.0" style="-fx-background-color: #74b9ff;">
+         <children>
+            <JFXButton layoutX="924.0" layoutY="26.0" onAction="#btnClearOnAction" text="CLEAR" textFill="#171717">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="681.0" layoutY="26.0" onAction="#btnUpdateOnAction" text="UPDATE" textFill="#171717">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="441.0" layoutY="26.0" onAction="#btnDeleteOnAction" text="DELETE" textFill="#171717">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="-3.0" layoutY="26.0" onAction="#btnsaveOnAction" text="SAVE" textFill="#171717">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="184.0" layoutY="26.0" onAction="#btnSearchOnaction" text="SEARCH" textFill="#171717">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

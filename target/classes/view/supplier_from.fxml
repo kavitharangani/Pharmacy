@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.SupplierFromController">
+   <children>
+      <ImageView fitHeight="921.0" fitWidth="1377.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/9727709_26840.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="334.0" layoutY="149.0" opacity="0.86" prefHeight="470.0" prefWidth="819.0" style="-fx-background-color: black;" styleClass="edge-button" stylesheets="@../style/style.css">
+         <children>
+            <TextField fx:id="txtSuName" layoutX="469.0" layoutY="125.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtSuId" layoutX="469.0" layoutY="44.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtSuNic" layoutX="469.0" layoutY="210.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </TextField>
+            <Label layoutX="75.0" layoutY="127.0" text="Supplier Name" textFill="#bed6da">
+               <font>
+                  <Font name="Britannic Bold" size="38.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="212.0" text="Supplier NIC" textFill="#bed6da">
+               <font>
+                  <Font name="Britannic Bold" size="38.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtSupContact" layoutX="469.0" layoutY="297.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtSupCompany" layoutX="469.0" layoutY="392.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </TextField>
+            <Label layoutX="75.0" layoutY="297.0" text="Supplier Contact" textFill="#bed6da">
+               <font>
+                  <Font name="Britannic Bold" size="38.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="382.0" prefHeight="41.0" prefWidth="259.0" text="Company Name" textFill="#bed6da">
+               <font>
+                  <Font name="Britannic Bold" size="38.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="46.0" text="Supplier Id" textFill="#bed6da">
+               <font>
+                  <Font name="Britannic Bold" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="174.0" fitWidth="184.0" layoutX="98.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/consumerism.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="309.0" layoutY="38.0" text="WELCOME   SUPPLIER ...">
+         <font>
+            <Font name="Elephant" size="62.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#1927e4" />
+                  <Stop color="#3c3b40" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <AnchorPane layoutX="144.0" layoutY="661.0" prefHeight="127.0" prefWidth="1150.0" style="-fx-background-color: #74b9ff;">
+         <children>
+            <JFXButton layoutX="935.0" layoutY="26.0" onAction="#btnClearOnAction" text="CLEAR" textFill="#1c1b1e">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="25.0" layoutY="26.0" onAction="#btnsaveOnAction" text="SAVE" textFill="#1c1b1e">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="229.0" layoutY="26.0" onAction="#btnSearchOnaction" text="SEARCH" textFill="#1c1b1e">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="477.0" layoutY="26.0" onAction="#btnDeleteOnAction" text="DELETE" textFill="#1c1b1e">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="705.0" layoutY="26.0" onAction="#btnUpdateOnAction" text="UPDATE" textFill="#1c1b1e">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="41.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

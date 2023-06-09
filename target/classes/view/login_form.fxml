@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="780.0" prefWidth="1530.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="780.0" fitWidth="1090.0" pickOnBounds="true" preserveRatio="true" scaleX="1.9">
+         <image>
+            <Image url="@../img/R.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="661.0" layoutY="114.0" opacity="0.66" prefHeight="614.0" prefWidth="572.0" style="-fx-background-color: #2d3436;" styleClass="edge-button" stylesheets="@../style/style.css">
+         <effect>
+            <InnerShadow>
+               <input>
+                  <DropShadow />
+               </input>
+            </InnerShadow>
+         </effect>
+      </Label>
+      <TextField fx:id="lblUserName" layoutX="778.0" layoutY="255.0" prefHeight="49.0" prefWidth="364.0" styleClass="edge-button" stylesheets="@../style/style.css">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="lblPassword" layoutX="777.0" layoutY="373.0" prefHeight="54.0" prefWidth="364.0" styleClass="edge-button" stylesheets="@../style/style.css">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </PasswordField>
+      <Button fx:id="btnLogin" layoutX="895.0" layoutY="498.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="54.0" prefWidth="127.0" style="-fx-background-color: #74b9ff;" styleClass="edge-button" stylesheets="@../style/style.css" text="LOGIN">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSign" layoutX="885.0" layoutY="626.0" mnemonicParsing="false" onAction="#btnSignupOnAction" style="-fx-background-color: #ff7675;" styleClass="edge-button" stylesheets="@../style/style.css" text="SIGNUP">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Button>
+      <JFXButton layoutX="947.0" layoutY="434.0" onAction="#btnForgotPasswordOnAction" prefHeight="42.0" prefWidth="195.0" text="Forgot pass word ?" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </JFXButton>
+      <Label alignment="CENTER" prefWidth="1530.0" style="-fx-background-color: #74b9ff;" text="WELCOME    TO   PHARMACY     SYSTEM    " textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="57.0" />
+         </font>
+      </Label>
+      <Label layoutX="694.0" layoutY="139.0" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="48.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Label layoutX="941.0" layoutY="569.0" text="or" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="74.0" fitWidth="49.0" layoutX="725.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/icons8-user-100.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="49.0" fitWidth="42.0" layoutX="728.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/icons8-password-100.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="681.0" layoutY="638.0" onAction="#btnCreateAccountOnAction" prefHeight="42.0" prefWidth="195.0" text="Create Account..." textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

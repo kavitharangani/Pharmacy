@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane opacity="0.62" prefHeight="955.0" prefWidth="1286.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacy.controller.CustomerFromController">
+   <children>
+      <ImageView fitHeight="1050.0" fitWidth="1439.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/9727709_26840.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="309.0" layoutY="183.0" prefHeight="468.0" prefWidth="793.0" style="-fx-background-color: black;" styleClass="edge-button" stylesheets="@../style/style.css">
+         <children>
+            <TextField fx:id="txtName" layoutX="411.0" layoutY="131.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="21.0" />
+               </font></TextField>
+            <TextField fx:id="txtId" layoutX="411.0" layoutY="51.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="21.0" />
+               </font></TextField>
+            <TextField fx:id="txtNic" layoutX="417.0" layoutY="220.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="21.0" />
+               </font></TextField>
+            <TextField fx:id="txtContact" layoutX="417.0" layoutY="310.0" prefHeight="32.0" prefWidth="282.0" style="-fx-background-color: white;" styleClass="edge-button" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Arial Bold Italic" size="21.0" />
+               </font></TextField>
+            <Label layoutX="72.0" layoutY="131.0" text="Customer Name" textFill="#cee1c7">
+               <font>
+                  <Font name="Britannic Bold" size="38.0" />
+               </font></Label>
+            <Label layoutX="72.0" layoutY="54.0" text="Customer Id" textFill="#cee1c7">
+               <font>
+                  <Font name="Britannic Bold" size="32.0" />
+               </font></Label>
+            <Label layoutX="82.0" layoutY="222.0" prefHeight="40.0" prefWidth="247.0" text="Customer NIC" textFill="#cee1c7">
+               <font>
+                  <Font name="Britannic Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="312.0" text="Customer Contact" textFill="#cee1c7">
+               <font>
+                  <Font name="Britannic Bold" size="32.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="141.0" fitWidth="179.0" layoutX="92.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/customer-service-agent.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="233.0" layoutY="58.0" text="WELCOME    CUSTOMER...">
+         <font>
+            <Font name="Elephant" size="69.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.8300970873786407" endY="0.5922330097087378" startX="0.05825242718446602">
+               <stops>
+                  <Stop color="#400abf" />
+                  <Stop color="#131314" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <AnchorPane layoutX="84.0" layoutY="680.0" prefHeight="127.0" prefWidth="1169.0" style="-fx-background-color: #74b9ff;">
+         <children>
+            <JFXButton layoutX="203.0" layoutY="24.0" onAction="#btnSearchOnAction" prefHeight="31.0" prefWidth="210.0" text="SEARCH" textFill="#131414">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="33.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutY="24.0" onAction="#btnSaveOnAction" prefHeight="31.0" prefWidth="222.0" text="SAVE" textFill="#131414">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="33.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="413.0" layoutY="24.0" onAction="#btnDeleteOnAction" prefHeight="31.0" prefWidth="210.0" text="DELETE" textFill="#131414">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="33.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="615.0" layoutY="24.0" onAction="#btnUpdateOnAction" prefHeight="31.0" prefWidth="210.0" text="UPDATE" textFill="#131414">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="33.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="816.0" layoutY="24.0" onAction="#btnClearOnAction" prefHeight="31.0" prefWidth="222.0" text="CLEAR" textFill="#131414">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="33.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
