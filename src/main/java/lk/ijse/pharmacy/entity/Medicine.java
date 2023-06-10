@@ -18,7 +18,7 @@ public class Medicine {
     }
 
 
-    public Medicine() {
+    public Medicine(String mediCode, String description, String name, String packSize, char[] unitPrize, char[] qtyOnStock) {
     }
 
 

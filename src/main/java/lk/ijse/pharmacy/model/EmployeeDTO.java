@@ -11,6 +11,10 @@ public class EmployeeDTO {
 
     }
 
+    public EmployeeDTO(String name, String contact, String id, String nic, String address) {
+
+    }
+
     public Object getEmployeeName() {
         return null;
     }

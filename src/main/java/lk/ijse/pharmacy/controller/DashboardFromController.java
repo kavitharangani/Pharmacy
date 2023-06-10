@@ -10,6 +10,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.pharmacy.entity.Medicine;
+import lk.ijse.pharmacy.entity.Supplier;
 import lk.ijse.pharmacy.jhj.CustomerModel;
 import lk.ijse.pharmacy.jhj.MedicineModel;
 import lk.ijse.pharmacy.jhj.OrderModel;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DashboardFromController {
 
@@ -53,9 +56,9 @@ public class DashboardFromController {
 
         try {
             int customerCount = CustomerModel.countCustomers();
-            int countOrders = OrderModel.countOrders();
+            ArrayList<Supplier> countOrders = OrderModel.countOrders();
             double totalOrderSales = OrderModel.getTotalOrderSales();
-            int medicineCount= MedicineModel.countMedicines();
+            ArrayList<Medicine> medicineCount= MedicineModel.countMedicines();
             double totalMonthlySales = OrderModel.getTotalOrderSales();
 
             lblTotalCustomer.setText(String.valueOf(customerCount));

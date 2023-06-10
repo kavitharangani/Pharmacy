@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import lk.ijse.pharmacy.bo.BOFactory;
+import lk.ijse.pharmacy.bo.Custom.EmployeeBO;
 import lk.ijse.pharmacy.model.EmployeeDTO;
 import lk.ijse.pharmacy.jhj.EmployeeModel;
 
@@ -32,16 +34,22 @@ public class EmployeeFromController {
     private Label txtContact;
     private PolicyNode LoadContext;
 
+    EmployeeBO employeeBO = (EmployeeBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.EMPLOYEE);
+    private boolean isDelete;
+    private boolean isSave;
+    private boolean isUpdate;
+
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
         if (txtEmID.getText().matches("^[E0-9]{4}$")) {
         String id=txtEmID.getText();
         try {
-            boolean isDelete=EmployeeModel.delete(id);
+           // boolean isDelete=EmployeeModel.delete(id);
+            employeeBO.delete(id);
             if (isDelete){
                 new Alert(Alert.AlertType.CONFIRMATION,"OK").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     } else {
@@ -59,14 +67,16 @@ public class EmployeeFromController {
         String nic = txtEmNIC.getText();
         String address = txtEmAddress.getText();
 
-        EmployeeDTO employee =new EmployeeDTO(name,contact,id,nic,address);
+       // EmployeeDTO employee =new EmployeeDTO(name,contact,id,nic,address);
 
         try {
-            boolean isSave= EmployeeModel.save(employee);
+           // boolean isSave= EmployeeModel.save(employee);
+
+            employeeBO.save(new EmployeeDTO(name,contact,id,nic,address));
             if (isSave){
                 new Alert(Alert.AlertType.CONFIRMATION,"OK").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         } else {
@@ -106,14 +116,15 @@ public class EmployeeFromController {
             String nic = txtEmNIC.getText();
             String address = txtEmAddress.getText();
 
-            EmployeeDTO employee = new EmployeeDTO(name, contact, id, nic, address);
+            //EmployeeDTO employee = new EmployeeDTO(name, contact, id, nic, address);
 
             try {
-                boolean isUpdate = EmployeeModel.update(employee);
+                //boolean isUpdate = EmployeeModel.update(employee);
+                employeeBO.update(new EmployeeDTO(name,contact,id,nic,address));
                 if (isUpdate) {
                     new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }else{

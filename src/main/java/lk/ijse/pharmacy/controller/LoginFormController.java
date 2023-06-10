@@ -10,9 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.pharmacy.bo.BOFactory;
+import lk.ijse.pharmacy.bo.Custom.LoginBO;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class LoginFormController {
 
@@ -34,22 +37,14 @@ public class LoginFormController {
     private JFXPanel mainContext;
 
 
-    public void btnOnAction(javafx.event.ActionEvent actionEvent) throws IOException {
+    LoginBO loginBO = (LoginBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.LOGIN);
 
-       /* if (lblUserName.getText().equals("admin") && lblPassword.getText().equals("1234")) {
-
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashboard_from.fxml"));
-            Scene scene = new Scene(anchorPane);
-            Stage stage = (Stage) root.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Dashboard");
-            stage.centerOnScreen();
-        }*/
+    public void btnOnAction(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btnLogin) {
             String username = lblUserName.getText();
             String password = lblPassword.getText();
             if (username.equalsIgnoreCase("kavi") && password.equalsIgnoreCase("1234")) {
-                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashboard_from.fxml"));
+                AnchorPane anchorPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("D:\\2nd Semester\\Pharmacy\\src\\main\\resources\\view\\dashboard_from.fxml")));
                 Scene scene = new Scene(anchorPane);
                 Stage stage = (Stage) root.getScene().getWindow();
                 stage.setScene(scene);
@@ -60,6 +55,7 @@ public class LoginFormController {
             if
             (lblUserName.getText().isEmpty() && lblPassword.getText().isEmpty()) {
                 lblLoginText.setText("Please enter your data.");
+                //loginBO.btnOnAction(  ("Please enter your data."));
             } else {
                new Alert(Alert.AlertType.ERROR,"WRONG PASSWORD !!!").show();
             }
@@ -71,7 +67,7 @@ public class LoginFormController {
 
 
     public void btnForgotPasswordOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashboard_from.fxml"));
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("resources\\view\\supplier_from.fxml"));
         Scene scene=new Scene(anchorPane);
         Stage stage= (Stage) root.getScene().getWindow();
         stage.setScene(scene);

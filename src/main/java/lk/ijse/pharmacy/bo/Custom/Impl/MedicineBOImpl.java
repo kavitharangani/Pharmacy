@@ -1,22 +1,19 @@
 package lk.ijse.pharmacy.bo.Custom.Impl;
 
-import lk.ijse.pharmacy.bo.Custom.EmployeeBO;
 import lk.ijse.pharmacy.bo.Custom.MedicineBO;
 import lk.ijse.pharmacy.bo.SuperBO;
 import lk.ijse.pharmacy.dao.Custom.MedicineDAO;
 import lk.ijse.pharmacy.dao.DAOFactory;
 import lk.ijse.pharmacy.dao.SQLUtil;
-import lk.ijse.pharmacy.entity.Customer;
 import lk.ijse.pharmacy.entity.Medicine;
 import lk.ijse.pharmacy.model.CartPlaceOrderDTO;
+import lk.ijse.pharmacy.model.MedicineDTO;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static lk.ijse.pharmacy.jhj.MedicineModel.countMedicines;
 
 public class MedicineBOImpl implements MedicineBO, SuperBO {
     MedicineDAO medicineDAO = (MedicineDAO) DAOFactory.daoFactory().getDAO(DAOFactory.DAOTypes.MEDICINE);
@@ -40,7 +37,7 @@ public class MedicineBOImpl implements MedicineBO, SuperBO {
     }
 
     @Override
-    public boolean update(Medicine medicine) throws SQLException, ClassNotFoundException {
+    public boolean update(MedicineDTO medicine) throws SQLException, ClassNotFoundException {
        return medicineDAO.update(new Medicine(medicine.getMediCode(),medicine.getDescription(),medicine.getName(),medicine.getPackSize(),medicine.getUnitPrize(),medicine.getQtyOnStock()));
     }
 
@@ -76,5 +73,10 @@ public class MedicineBOImpl implements MedicineBO, SuperBO {
             countMedicines().add(medicine);
         }
         return countMedicines();
+    }
+
+    @Override
+    public void save(String id, String name, String description, Double price, Integer qty, String size) {
+        return;
     }
 }

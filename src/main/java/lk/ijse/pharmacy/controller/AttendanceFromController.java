@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.pharmacy.bo.BOFactory;
+import lk.ijse.pharmacy.bo.Custom.AttendanceBO;
 import lk.ijse.pharmacy.model.AttendanceDTO;
 import lk.ijse.pharmacy.model.EmployeeDTO;
 import lk.ijse.pharmacy.model.AttendanceTm;
@@ -67,25 +69,24 @@ public class AttendanceFromController implements Initializable {
     private java.awt.Label txtEmID;
     private JFXPanel root;
 
+    AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ATTENDANCE);
+    private boolean isSave;
+
     @FXML
     void btnSaveOnAction(ActionEvent event) throws ParseException {
         String id = txtEmployeeId.getSelectionModel().getSelectedItem();
         RadioButton selectedButton = (RadioButton)btnGroup.getSelectedToggle();
         String text = selectedButton.getText();
         String date = String.valueOf(LocalTime.now());
-        //System.out.println(name.getText());
-//        String dateText = txtDate.getText();
-//        String testDate = "29-Apr-2010,13:00:14 PM";
-//        DateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");//2023.02.12
-//        Date date = formatter.parse(dateText);
         ObservableList<AttendanceTm> obList = FXCollections.observableArrayList();
         AttendanceTm tm = new AttendanceTm(id,date,LocalTime.now(),text);
         obList.add(tm);
         tblAttendens01.setItems(obList);
 
-        AttendanceDTO attendance= new AttendanceDTO(id,text);
+       // AttendanceDTO attendance= new AttendanceDTO(id,text);
         try {
-            boolean isSave= AttendanceDAOImpl.save(attendance);
+           // boolean isSave= AttendanceDAOImpl.save(attendance);
+            attendanceBO.save(new AttendanceDTO(id,date,LocalTime.now(),text));
             if (isSave){
                 new Alert(Alert.AlertType.CONFIRMATION,"OK").show();
             }

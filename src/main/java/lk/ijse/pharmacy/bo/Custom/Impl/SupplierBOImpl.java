@@ -70,4 +70,9 @@ public class SupplierBOImpl implements SupplierBO, SuperBO {
         }
         return getIds();
     }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
 }

@@ -46,7 +46,7 @@ public class OrderModel {
         if (resultSet.next()) {
             count =  resultSet.getInt(1);
         }
-        return count;
+        return null;
     }
 
     public static double getTotalOrderSales() throws SQLException {

@@ -28,6 +28,9 @@ public class CustomerFromController {
     private JFXPanel root;
 
     CustomerBO customerBO  = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
+    private boolean isDelete;
+    private boolean isSave;
+    private boolean isUpdate;
 
 
     @FXML
@@ -44,11 +47,15 @@ public class CustomerFromController {
         if (txtId.getText().matches("^[C0-9]{4}$")) {
             String custID = txtId.getText();
             try {
-                boolean isDelete = CustomerModel.delete(custID);
+               // boolean isDelete = CustomerModel.delete(custID);
+                customerBO.delete(custID);
+
                 if (isDelete) {
                     new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
                 }
             } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else {
@@ -65,14 +72,17 @@ public class CustomerFromController {
             String contact = txtContact.getText();
             String nic = txtNic.getText();
 
-            CustomerDTO customer = new CustomerDTO(id, name, contact, nic);
+           // CustomerDTO customer = new CustomerDTO(id, name, contact, nic);
 
             try {
-                boolean isSave=CustomerModel.save(customer);
+               // boolean isSave=CustomerModel.save(customer);
+                customerBO.save(new CustomerDTO(id,name,contact,nic));
                 if (isSave){
                     new Alert(Alert.AlertType.CONFIRMATION,"OK").show();
                 }
             } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }else {
@@ -102,6 +112,7 @@ public class CustomerFromController {
         }
 
     }
+
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         if (txtId.getText().matches("^[C0-9]{4}$")) {
@@ -110,14 +121,15 @@ public class CustomerFromController {
             String contact = txtContact.getText();
             String nic = txtNic.getText();
 
-            CustomerDTO customer = new CustomerDTO(id, name, contact, nic);
+           // CustomerDTO customerDTO = new CustomerDTO(id, name, contact, nic);
 
             try {
-                boolean isUpdate = CustomerModel.update(customer);
+              //  boolean isUpdate = CustomerModel.update(customer);
+                customerBO.update(new CustomerDTO(id,name,contact,nic));
                 if (isUpdate) {
                     new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else {

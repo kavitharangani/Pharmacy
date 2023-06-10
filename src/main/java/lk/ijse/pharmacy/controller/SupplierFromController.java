@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import lk.ijse.pharmacy.bo.BOFactory;
+import lk.ijse.pharmacy.bo.Custom.SupplierBO;
 import lk.ijse.pharmacy.model.SupplierDTO;
 import lk.ijse.pharmacy.jhj.SupplierDetailModel;
 
@@ -26,17 +28,19 @@ public class SupplierFromController {
     @FXML
     private TextField txtSupCompany;
 
+    SupplierBO supplierBO = (SupplierBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SUPPLIER);
+    private boolean isDelete;
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
         if(txtSuId.getText().matches("^[S0-9]{4}$")) {
-            String id = txtSuId.getText();
             try {
-                boolean isDelete = SupplierDetailModel.delete(id);
+               //boolean isDelete = SupplierDetailModel.delete(id);
+                supplierBO.delete(txtSuId.getId());
                 if (isDelete) {
                     new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }else {
@@ -82,6 +86,7 @@ public class SupplierFromController {
 
             try {
                 boolean isUpdate = SupplierDetailModel.update(supplier);
+
                 if (isUpdate) {
                     new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
                 }
@@ -107,6 +112,7 @@ public class SupplierFromController {
 
             try {
                 boolean isSave = SupplierDetailModel.save(supplier);
+                //supplierBO.save(new SupplierDTO(id,contact,name,nic,company));
                 if (isSave) {
                     new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
                 }

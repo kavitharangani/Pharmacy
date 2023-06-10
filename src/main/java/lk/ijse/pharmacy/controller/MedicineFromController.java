@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.pharmacy.bo.BOFactory;
+import lk.ijse.pharmacy.bo.Custom.MedicineBO;
+import lk.ijse.pharmacy.entity.Medicine;
 import lk.ijse.pharmacy.model.MedicineDTO;
 import lk.ijse.pharmacy.jhj.MedicineModel;
 
@@ -34,17 +37,22 @@ public class MedicineFromController {
     @FXML
     private TextField txtPackSize;
 
+    MedicineBO medicineBO = (MedicineBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MEDICINE);
+    private boolean isDelete;
+    private boolean isUpdate;
+    private boolean isSave;
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
         if (txtMeId2.getText().matches("[M0-9]{4}$")) {
             String id = txtMeId2.getText();
             try {
-                boolean isDelete = MedicineModel.delete(id);
+                //boolean isDelete = MedicineModel.delete(id);
+                medicineBO.delete(id);
                 if (isDelete) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Ok").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }else {
@@ -89,15 +97,16 @@ public class MedicineFromController {
             Integer qty = Integer.valueOf(txtQty.getText());
             String size = txtPackSize.getText();
 
-            MedicineDTO medicine = new MedicineDTO(id, name, description, size, price, qty);
+            //MedicineDTO medicine = new MedicineDTO(id, name, description, size, price, qty);
 
 
             try {
-                boolean isUpdate = MedicineModel.update(medicine);
+               // boolean isUpdate = MedicineModel.update(medicine);
+                medicineBO.update(new MedicineDTO(id,name,description,price,qty,size));
                 if (isUpdate) {
                     new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }else {
@@ -115,10 +124,11 @@ public class MedicineFromController {
             Integer qty = Integer.valueOf(txtQty.getText());
             String size = txtPackSize.getText();
 
-            MedicineDTO medicine = new MedicineDTO(id, name, description, size, price, qty);
+
 
             try {
-                boolean isSave = MedicineModel.save(medicine);
+                //boolean isSave = MedicineModel.save(medicine);
+                medicineBO.save(id,name,description,price,qty,size);
                 if (isSave) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Ok").show();
                 }

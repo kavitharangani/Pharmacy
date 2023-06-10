@@ -24,4 +24,7 @@ public interface SupplierBO extends SuperBO {
     public  double getTotalOrderSales() throws SQLException, ClassNotFoundException ;
 
     public  List<String> getIds() throws SQLException, ClassNotFoundException;
-}
+
+    public boolean delete(String id) throws SQLException, ClassNotFoundException ;
+
+    }

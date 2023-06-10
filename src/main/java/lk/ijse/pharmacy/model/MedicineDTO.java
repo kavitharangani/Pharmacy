@@ -12,6 +12,10 @@ public class MedicineDTO {
 
     }
 
+    public MedicineDTO(String id, String name, String description, Double price, Integer qty, String size) {
+
+    }
+
     public String getMediCode() {
         return null;
     }

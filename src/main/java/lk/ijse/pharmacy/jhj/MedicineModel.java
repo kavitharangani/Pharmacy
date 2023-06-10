@@ -85,6 +85,6 @@ public class MedicineModel {
         if (resultSet.next()) {
             count =  resultSet.getInt(1);
         }
-        return count;
+        return countMedicines();
     }
 }
