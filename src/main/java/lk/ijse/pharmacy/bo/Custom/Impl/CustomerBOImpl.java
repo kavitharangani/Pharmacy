@@ -5,10 +5,11 @@ import javafx.collections.ObservableList;
 import lk.ijse.pharmacy.bo.Custom.CustomerBO;
 import lk.ijse.pharmacy.bo.SuperBO;
 import lk.ijse.pharmacy.dao.Custom.CustomerDAO;
-import lk.ijse.pharmacy.dao.DAOFactory;
+import lk.ijse.pharmacy.dao.Custom.Impl.CustomerDAOImpl;
 import lk.ijse.pharmacy.dao.SQLUtil;
 import lk.ijse.pharmacy.entity.Customer;
 import lk.ijse.pharmacy.model.CustomerDTO;
+import lk.ijse.pharmacy.model.CustomersDTO;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -16,38 +17,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerBOImpl implements CustomerBO, SuperBO {
-    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.daoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
-    private CustomerDTO dto;
+    CustomerDAO customerDAO = new CustomerDAOImpl();
 
-    public boolean save(CustomerDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean save(CustomersDTO dto) throws SQLException{
          return customerDAO.save(new Customer(dto.getCustId(),dto.getCustName(),dto.getContact(),dto.getCustNic()));
     }
 
 
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException {
         return customerDAO.delete(id);
 
     }
 
-    public ArrayList<Customer> countCustomers() throws SQLException, ClassNotFoundException {
-        /*ArrayList<Customer>countCustomers = new ArrayList<>();
-        ResultSet resultSet = SQLUtil.execute("SELECT COUNT(*) as customerCount FROM pharmacy.customer;");
-        if (resultSet.next()) {
-            Customer customer = new Customer(resultSet.getString("CId"),resultSet.getString("CName"),resultSet.getString("CContact"),resultSet.getString("CNic"),resultSet.getString("CNic"));
-            countCustomers.add(customer);
-        }
-        return countCustomers;*/
-        return customerDAO.countCustomers();
-    }
 
-    public Customer search(String id) throws SQLException, ClassNotFoundException {
+    public CustomersDTO search(String id) throws SQLException {
         Customer customer = customerDAO.search(id);
-        return new Customer(customer.getCustId(),customer.getCustName(),customer.getContact(),customer.getCustNic());
+        return new CustomersDTO(customer.getCustId(),customer.getCustName(),customer.getContact(),customer.getCustNic());
     }
 
 
-    public  boolean update(CustomerDTO customer) throws SQLException, ClassNotFoundException {
-        return customerDAO.update(new Customer(dto.getCustId(), dto.getCustName(), dto.getContact(), dto.getCustNic()));
+    public  boolean update(CustomersDTO customer) throws SQLException {
+        return customerDAO.update(new Customer(customer.getCustId(), customer.getCustName(), customer.getContact(), customer.getCustNic()));
     }
 
         public ArrayList<CustomerDTO> getIds() throws SQLException, ClassNotFoundException {
@@ -89,5 +79,17 @@ public class CustomerBOImpl implements CustomerBO, SuperBO {
         }
         return list;
     }
+
+    public CustomersDTO searchCustomer(String id) throws SQLException {
+        Customer customer = customerDAO.searchCustomer(id);
+        return new CustomersDTO(customer.getCustId(),customer.getCustName(),customer.getContact(),customer.getCustNic());
+    }
+
+    @Override
+    public boolean deleteCustomer(String id) throws SQLException {
+        return customerDAO.deleteCustomer(id);
+    }
+
+
 
 }

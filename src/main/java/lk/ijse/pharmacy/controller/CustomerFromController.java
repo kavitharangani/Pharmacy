@@ -7,8 +7,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import lk.ijse.pharmacy.bo.BOFactory;
 import lk.ijse.pharmacy.bo.Custom.CustomerBO;
+import lk.ijse.pharmacy.bo.Custom.Impl.CustomerBOImpl;
+import lk.ijse.pharmacy.entity.Customer;
 import lk.ijse.pharmacy.model.CustomerDTO;
 import lk.ijse.pharmacy.jhj.CustomerModel;
+import lk.ijse.pharmacy.model.CustomersDTO;
 
 import java.sql.SQLException;
 
@@ -27,10 +30,7 @@ public class CustomerFromController {
     private TextField txtNic;
     private JFXPanel root;
 
-    CustomerBO customerBO  = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
-    private boolean isDelete;
-    private boolean isSave;
-    private boolean isUpdate;
+    CustomerBO customerBO  = new CustomerBOImpl();
 
 
     @FXML
@@ -45,49 +45,41 @@ public class CustomerFromController {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
         if (txtId.getText().matches("^[C0-9]{4}$")) {
-            String custID = txtId.getText();
             try {
-               // boolean isDelete = CustomerModel.delete(custID);
-                customerBO.delete(custID);
-
-                if (isDelete) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
+                boolean isDelete = customerBO.deleteCustomer(txtId.getText());
+                if (isDelete){
+                    new Alert(Alert.AlertType.CONFIRMATION).show();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "ID NOT VALIDATED!!!").show();
+        }
+        }
+
+
+
+    @FXML
+    void btnSaveOnAction(ActionEvent event) {
+        if (txtId.getText().matches("^[C0-9]{4}$")) {
+            String id = txtId.getText();
+            String name = txtName.getText();
+            String contact = txtContact.getText();
+            String nic = txtNic.getText();
+
+            try {
+                boolean isSave = customerBO.save(new CustomersDTO(id, name, contact, nic));
+                if (isSave) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
+                }
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else {
             new Alert(Alert.AlertType.ERROR, "ID NOT VALIDATED!!!").show();
         }
 
-        }
-
-    @FXML
-    void btnSaveOnAction(ActionEvent event) {
-        if(txtId.getText().matches("^[C0-9]{4}$")) {
-            String id = txtId.getText();
-            String name = txtName.getText();
-            String contact = txtContact.getText();
-            String nic = txtNic.getText();
-
-           // CustomerDTO customer = new CustomerDTO(id, name, contact, nic);
-
-            try {
-               // boolean isSave=CustomerModel.save(customer);
-                customerBO.save(new CustomerDTO(id,name,contact,nic));
-                if (isSave){
-                    new Alert(Alert.AlertType.CONFIRMATION,"OK").show();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }else {
-            new Alert(Alert.AlertType.ERROR, "ID NOT VALIDATED!!!").show();
-        }
     }
 
     @FXML
@@ -95,7 +87,7 @@ public class CustomerFromController {
         if (txtId.getText().matches("^[C0-9]{4}$")) {
             String id = txtId.getText();
             try {
-                CustomerDTO customer = CustomerModel.search(id);
+                CustomersDTO customer = customerBO.searchCustomer(id);
                 if (customer != null) {
                     txtId.setText(customer.getCustId());
                     txtName.setText(customer.getCustName());
@@ -107,11 +99,12 @@ public class CustomerFromController {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        } else {
-            new Alert(Alert.AlertType.ERROR, "ID NOT VALIDATED!!!").show();
-        }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "IT IS NOT VALIED").show();
 
+        }
     }
+
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
@@ -121,19 +114,20 @@ public class CustomerFromController {
             String contact = txtContact.getText();
             String nic = txtNic.getText();
 
-           // CustomerDTO customerDTO = new CustomerDTO(id, name, contact, nic);
-
             try {
-              //  boolean isUpdate = CustomerModel.update(customer);
-                customerBO.update(new CustomerDTO(id,name,contact,nic));
+                boolean isUpdate = customerBO.update(new CustomersDTO(id, name, contact, nic));
                 if (isUpdate) {
                     new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Customer Not Update").show();
+
                 }
-            } catch (SQLException | ClassNotFoundException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
-        } else {
-            new Alert(Alert.AlertType.ERROR, "ID NOT VALIDATED!!!").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "IT IS NOT VALIED").show();
+
         }
 
     }
