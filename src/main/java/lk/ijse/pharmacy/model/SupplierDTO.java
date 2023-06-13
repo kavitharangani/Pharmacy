@@ -8,26 +8,52 @@ public class SupplierDTO {
     private String suppliesNic;
     private String suppliesCompany;
 
-    public SupplierDTO(String id, String contact, String name, String nic, String company) {
+    public SupplierDTO(String suppliesID, String contact, String suppliesName, String suppliesNic, String suppliesCompany) {
+        this.suppliesID = suppliesID;
+        this.contact = contact;
+        this.suppliesName = suppliesName;
+        this.suppliesNic = suppliesNic;
+        this.suppliesCompany = suppliesCompany;
     }
 
+
     public String getSuppliesID() {
-        return null;
+        return suppliesID;
+    }
+
+    public void setSuppliesID(String suppliesID) {
+        this.suppliesID = suppliesID;
     }
 
     public String getContact() {
-        return null;
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public String getSuppliesName() {
-        return null;
+        return suppliesName;
+    }
+
+    public void setSuppliesName(String suppliesName) {
+        this.suppliesName = suppliesName;
     }
 
     public String getSuppliesNic() {
-        return null;
+        return suppliesNic;
+    }
+
+    public void setSuppliesNic(String suppliesNic) {
+        this.suppliesNic = suppliesNic;
     }
 
     public String getSuppliesCompany() {
-        return null;
+        return suppliesCompany;
+    }
+
+    public void setSuppliesCompany(String suppliesCompany) {
+        this.suppliesCompany = suppliesCompany;
     }
 }

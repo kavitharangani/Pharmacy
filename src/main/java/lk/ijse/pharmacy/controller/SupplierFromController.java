@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import lk.ijse.pharmacy.bo.BOFactory;
 import lk.ijse.pharmacy.bo.Custom.SupplierBO;
 import lk.ijse.pharmacy.model.SupplierDTO;
-import lk.ijse.pharmacy.jhj.SupplierDetailModel;
+
 
 import java.sql.SQLException;
 
@@ -29,22 +29,24 @@ public class SupplierFromController {
     private TextField txtSupCompany;
 
     SupplierBO supplierBO = (SupplierBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SUPPLIER);
-    private boolean isDelete;
+
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
         if(txtSuId.getText().matches("^[S0-9]{4}$")) {
             try {
-               //boolean isDelete = SupplierDetailModel.delete(id);
-                supplierBO.delete(txtSuId.getId());
-                if (isDelete) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
+                boolean isDelete = supplierBO.delete(txtSuId.getText());
+                if (isDelete){
+                    new Alert(Alert.AlertType.CONFIRMATION).show();
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "ID NOT FOUND").show();
+
                 }
-            } catch (SQLException | ClassNotFoundException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }else {
-            new Alert(Alert.AlertType.ERROR,"ID NOT VALIED !!!").show();
+            new Alert(Alert.AlertType.ERROR, "ID NOT VALIDATED!!!").show();
         }
 
     }
@@ -54,14 +56,16 @@ public class SupplierFromController {
         if(txtSuId.getText().matches("^[S0-9]{4}$")) {
             String id = txtSuId.getText();
             try {
-                SupplierDTO supplier = SupplierDetailModel.search(id);
+                SupplierDTO supplier = supplierBO.search(id);
                 if (supplier != null) {
                     txtSuId.setText(supplier.getSuppliesID());
                     txtSupContact.setText(supplier.getContact());
                     txtSuName.setText(supplier.getSuppliesName());
                     txtSuNic.setText(supplier.getSuppliesNic());
                     txtSupCompany.setText(supplier.getSuppliesCompany());
-                }
+                } else {
+                new Alert(Alert.AlertType.ERROR, "Customer Not Found").show();
+            }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -85,7 +89,7 @@ public class SupplierFromController {
 
 
             try {
-                boolean isUpdate = SupplierDetailModel.update(supplier);
+                boolean isUpdate = supplierBO.update(supplier);
 
                 if (isUpdate) {
                     new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
@@ -106,23 +110,17 @@ public class SupplierFromController {
             String name = txtSuName.getText();
             String nic = txtSuNic.getText();
             String company = txtSupCompany.getText();
-
-            SupplierDTO supplier = new SupplierDTO(id, contact, name, nic, company);
-
-
             try {
-                boolean isSave = SupplierDetailModel.save(supplier);
-                //supplierBO.save(new SupplierDTO(id,contact,name,nic,company));
+                boolean isSave =  supplierBO.save(new SupplierDTO(id,contact,name,nic,company));
                 if (isSave) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "OK").show();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Ok").show();
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }else {
             new Alert(Alert.AlertType.ERROR,"ID NOT VALIED !!!").show();
         }
-
     }
     @FXML
     public void btnClearOnAction(ActionEvent actionEvent) {

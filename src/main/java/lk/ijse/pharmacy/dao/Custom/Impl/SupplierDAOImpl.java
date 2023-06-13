@@ -10,44 +10,44 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lk.ijse.pharmacy.jhj.OrderModel.countOrders;
 
 public class SupplierDAOImpl implements SupplierDAO {
 
-    private Object orderId;
-    private Object now;
-    private Object total;
-    private boolean currentOrderId;
-
     @Override
-    public boolean save(Supplier dto) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("INSERT INTO suppliesorder(suppliesOrderID,Date,total)VALUES (?,?,?)", orderId, now, total);
+    public boolean save(Supplier dto) throws SQLException {
+        return CrudUtil.execute("INSERT INTO supplier(suppliesID,contact,suppliesName,suppliesNic,suppliesCompany) VALUES (?,?,?,?,?)",dto.getSuppliesID(),dto.getContact(),dto.getSuppliesName(),dto.getSuppliesNic(),dto.getSuppliesCompany());
 
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean delete(String id) throws SQLException {
+        return CrudUtil.execute("DELETE FROM supplier WHERE suppliesID= ?",id);
     }
 
 
     @Override
-    public ArrayList<Supplier> countCustomers() throws SQLException, ClassNotFoundException {
+    public Supplier search(String id) throws SQLException {
+        ResultSet rst = CrudUtil.execute("SELECT * FROM supplier WHERE suppliesID=?",id+"" );
+        if (rst.next()){
+            return new Supplier(
+                    rst.getString(1),
+                    rst.getString(2),
+                    rst.getString(3),
+                    rst.getString(4),
+                    rst.getString(5)
+
+            );
+        }
         return null;
     }
 
     @Override
-    public Supplier search(String id) throws SQLException, ClassNotFoundException {
-        return null;
+    public boolean update(Supplier dto) throws SQLException {
+        return CrudUtil.execute("UPDATE supplier SET contact=?,suppliesName=?,suppliesNic=?,suppliesCompany=? WHERE suppliesID=?",dto.getContact(),dto.getSuppliesName(),dto.getSuppliesNic(),dto.getSuppliesCompany(),dto.getSuppliesID());
     }
 
     @Override
-    public boolean update(Supplier dto) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public ArrayList<Supplier> getIds() throws SQLException, ClassNotFoundException {
+    public ArrayList<Supplier> getIds() throws SQLException {
         String sql = "SELECT suppliesID FROM supplier";
         ResultSet resultSet = CrudUtil.execute(sql);
         List<String> id = new ArrayList<>();
@@ -57,69 +57,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         }
         return getIds();
     }
-
-    @Override
-    public ArrayList<Supplier> getAllAvailableItems(String other) throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Supplier> getAllAvailableItems() throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    @Override
-    public List<String> generate(Supplier dto) throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Supplier> count() throws SQLException, ClassNotFoundException {
-        String sql = "SELECT COUNT(*) FROM pharmacy.orders;";
-        ResultSet resultSet = CrudUtil.execute(sql);
-        int count = 0;
-        if (resultSet.next()) {
-            count = resultSet.getInt(1);
-        }
-        return countOrders();
-    }
-
-    @Override
-    public List<String> splitOrderId(String dto) {
-        /*if(currentOrderId != null) {
-            String[] strings = currentOrderId.split("K0");
-            int id = Integer.parseInt(strings[1]);
-            id++;
-
-            return "K0"+id;
-        }
-        return "K001";*/
-        return null;
-    }
-
-    @Override
-    public double getTotalOrderSales() throws SQLException {
-        String sql = "SELECT SUM(total)  FROM pharmacy.orders;";
-        ResultSet resultSet = CrudUtil.execute(sql);
-        double total = 0;
-        if (resultSet.next()) {
-            total = resultSet.getInt(1);
-        }
-        return getTotalOrderSales();
-    }
 }
-
-   /* public static String generateNextOrderId() throws SQLException {
-        Connection con = DBConnection.getInstance().getConnection();
-
-        String sql = "SELECT suppliesId FROM suppliesorder ORDER BY suppliesId DESC LIMIT 1";
-
-        ResultSet resultSet = con.createStatement().executeQuery(sql);
-        if(resultSet.next()) {
-            return splitOrderId(resultSet.getString(1));
-        }
-        return splitOrderId(null);
-    }*/
 
 
 
