@@ -1,21 +1,21 @@
 package lk.ijse.pharmacy.bo.Custom;
 
 import lk.ijse.pharmacy.bo.SuperBO;
-import lk.ijse.pharmacy.model.EmployeeDTO;
+import lk.ijse.pharmacy.model.CustomersDTO;
+import lk.ijse.pharmacy.model.EmployeesDTO;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface EmployeeBO extends SuperBO {
-    public boolean save(EmployeeDTO employee) throws SQLException, ClassNotFoundException ;
+    public boolean save(EmployeesDTO employee) throws SQLException ;
 
-    public  boolean delete(String id) throws SQLException, ClassNotFoundException ;
+    public  boolean delete(String id) throws SQLException ;
 
-    public EmployeeDTO search(String id) throws SQLException, ClassNotFoundException;
+    EmployeesDTO search(String id) throws SQLException;
 
-    public boolean update(EmployeeDTO employee) throws SQLException, ClassNotFoundException ;
+    boolean update(EmployeesDTO employee) throws SQLException ;
 
-    List<String> generate(String dto) throws SQLException, ClassNotFoundException ;
+    public EmployeesDTO searchEmployee(String id) throws SQLException;
 
-    public  List<String> generateEmployeeAttendance() throws SQLException ;
 }

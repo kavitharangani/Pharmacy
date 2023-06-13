@@ -2,7 +2,7 @@ package lk.ijse.pharmacy.jhj;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lk.ijse.pharmacy.model.CustomerDTO;
+import lk.ijse.pharmacy.model.CustomersDTO;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ public class CustomerModel {
 
     private static String type;
 
-    public static boolean save(CustomerDTO customer) throws SQLException {
+    public static boolean save(CustomersDTO customer) throws SQLException {
         String sql = "INSERT INTO customer (custId,custName,contact,custNic) VALUES (?,?,?,?)";
         return CrudUtil.execute(sql, customer.getCustId(), customer.getCustName(),  customer.getContact(), customer.getCustNic());
     }
@@ -34,7 +34,7 @@ public class CustomerModel {
         return count;
     }
 
-    public static CustomerDTO search(String id) throws SQLException {
+    public static CustomersDTO search(String id) throws SQLException {
         String sql = "SELECT * FROM customer WHERE custID = ?";
         ResultSet resultSet = CrudUtil.execute(sql, id);
 
@@ -44,12 +44,12 @@ public class CustomerModel {
             String CContact = resultSet.getString(3);
             String CNic = resultSet.getString(4);
 
-            return new CustomerDTO(CId, CName,CContact, CNic);
+            return new CustomersDTO(CId, CName,CContact, CNic);
         }
         return null;
     }
 
-    public static boolean update(CustomerDTO customer) throws SQLException {
+    public static boolean update(CustomersDTO customer) throws SQLException {
         String sql = "UPDATE customer SET custName=?,contact=?,custNic=? WHERE custId = ? ";
         return CrudUtil.execute(sql, customer.getCustName(), customer.getContact(), customer.getCustNic(), customer.getCustId());
     }
@@ -66,36 +66,23 @@ public class CustomerModel {
         return id;
     }
 
-    public static ObservableList getAllAvailableItems(String other) throws SQLException {
-        ResultSet rs= CrudUtil.execute("SELECT * from Custome where type = '"+type+"' AND qty>0 ");
-        ObservableList<CustomerDTO> list = FXCollections.observableArrayList();
-        while (next()){
-            CustomerDTO item = new CustomerDTO(rs.getString(1),rs.getString(2),rs.getString
-                    (3),rs.getString(4),rs.getString(5));
 
-            list.add(item);
-        }
-        return list;
-    }
 
     public static boolean next() {
         return false;
     }
 
-    public static ObservableList<CustomerDTO> getAllAvailableItems() throws SQLException, ClassNotFoundException {
+    public static ObservableList<CustomersDTO> getAllAvailableItems() throws SQLException, ClassNotFoundException {
         ResultSet rs= CrudUtil.execute("SELECT * from customer ");
-        ObservableList<CustomerDTO> list = FXCollections.observableArrayList();
+        ObservableList<CustomersDTO> list = FXCollections.observableArrayList();
         while (rs.next()){
-           CustomerDTO item = new CustomerDTO(rs.getString(1),rs.getString(2),rs.getString
+           CustomersDTO a = new CustomersDTO(rs.getString(1),rs.getString(2),rs.getString
                    (3),rs.getString(4),rs.getString(5));
 
 
-            list.add(item);
+            list.add(a);
         }
-        return list;
-    }
-
-    public static List<CustomerDTO> getAll() {
         return null;
     }
+
 }
