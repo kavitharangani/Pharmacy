@@ -11,17 +11,14 @@ import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class AttendanceBOImpl  implements AttendanceBO, SuperBO {
     AttendanceDAO attendanceDAO = (AttendanceDAO) DAOFactory.daoFactory().getDAO(DAOFactory.DAOTypes.ATTENDANCE);
 
-    private AttendanceDTO attendance;
-    private AttendanceDTO dto;
-
-
     @Override
-    public boolean save(AttendanceDTO attendance) throws SQLException, ClassNotFoundException {
-        return attendanceDAO.save(new Attendance(dto.getEmployeeId(),dto.getAttendance()));
+    public boolean save(AttendanceDTO attendance) throws SQLException {
+        return attendanceDAO.saveAttendance(new Attendance(attendance.getEmployeeId(),attendance.getDate(),attendance.getAttendance()));
     }
 
     public AttendanceDTO search(String id) throws SQLException {
@@ -35,9 +32,15 @@ public class AttendanceBOImpl  implements AttendanceBO, SuperBO {
             String attendance=resultSet.getString(4);
 
 
-            return new AttendanceDTO(employeeName,employeeId,date,attendance);
+            return new AttendanceDTO(employeeId,date,attendance);
         }
         return null;
     }
+
+    @Override
+    public List<String> generateEmployeeAttendance() {
+        return null;
+    }
+
 
 }

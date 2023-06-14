@@ -1,10 +1,7 @@
 package lk.ijse.pharmacy.dao.Custom.Impl;
 
 import lk.ijse.pharmacy.dao.Custom.EmployeeDAO;
-import lk.ijse.pharmacy.dao.SQLUtil;
-import lk.ijse.pharmacy.entity.Customer;
 import lk.ijse.pharmacy.entity.Employee;
-import lk.ijse.pharmacy.model.EmployeesDTO;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -53,10 +50,20 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public ArrayList<Employee> getIds() throws SQLException {
+    public List<String> getIds() throws SQLException {
         return null;
     }
 
+    @Override
+    public List<String> getId() throws SQLException {
+        String sql = "SELECT employeeId FROM Employee";
+        List<String> id = new ArrayList<>();
 
+        ResultSet resultSet = CrudUtil.execute(sql);
 
+        while (resultSet.next()) {
+            id.add(resultSet.getString(1));
+        }
+        return id;
+    }
 }

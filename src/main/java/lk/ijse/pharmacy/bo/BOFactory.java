@@ -1,7 +1,6 @@
 package lk.ijse.pharmacy.bo;
 
 import lk.ijse.pharmacy.bo.Custom.Impl.*;
-import lk.ijse.pharmacy.bo.Custom.LoginBO;
 
 public class BOFactory {
     private static  BOFactory boFactory;
@@ -13,7 +12,7 @@ public class BOFactory {
     }
 
     public enum BOTypes{
-        CUSTOMER,EMPLOYEE,SUPPLIER,MEDICINE,ATTENDANCE,CARTPLACE_ORDER,CRATSUPPLIER_ORDER,ORDER,LOGIN,PURCHASEORDERBO
+        CUSTOMER,EMPLOYEE,SUPPLIER,MEDICINE,ATTENDANCE,ORDER_DETAILS,CRATSUPPLIER_ORDER,ORDER,LOGIN,PURCHASEORDERBO
     }
 
     public SuperBO getBO (BOTypes types){
@@ -30,12 +29,10 @@ public class BOFactory {
                 return new SupplierBOImpl();
             case ORDER:
                 return new OrderBOImpl();
-            case LOGIN:
-                return new LogingBOImpl();
-            case CARTPLACE_ORDER:
-                return  new CartPlaceOrderImpl();
+            case ORDER_DETAILS:
+                return new OrderDetailBOImpl();
             case PURCHASEORDERBO:;
-            return new PurchaseOrderBOImpl();
+                return new PurchaseOrderBOImpl();
             default:
                 return null;
         }

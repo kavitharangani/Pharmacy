@@ -5,12 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import lk.ijse.pharmacy.bo.BOFactory;
 import lk.ijse.pharmacy.bo.Custom.CustomerBO;
 import lk.ijse.pharmacy.bo.Custom.Impl.CustomerBOImpl;
-import lk.ijse.pharmacy.entity.Customer;
-import lk.ijse.pharmacy.model.CustomerDTO;
-import lk.ijse.pharmacy.jhj.CustomerModel;
 import lk.ijse.pharmacy.model.CustomersDTO;
 
 import java.sql.SQLException;

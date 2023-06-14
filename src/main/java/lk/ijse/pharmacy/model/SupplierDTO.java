@@ -1,6 +1,8 @@
 package lk.ijse.pharmacy.model;
 
 
+import java.time.LocalDate;
+
 public class SupplierDTO {
     private String suppliesID;
     private String contact;
@@ -15,7 +17,6 @@ public class SupplierDTO {
         this.suppliesNic = suppliesNic;
         this.suppliesCompany = suppliesCompany;
     }
-
 
     public String getSuppliesID() {
         return suppliesID;

@@ -14,9 +14,6 @@ import java.util.List;
 
 public interface EmployeeDAO extends CrudDAO<Employee> {
     public Employee search(String id) throws SQLException;
-
-
-
-
+    List<String> getId() throws SQLException;
 
 }

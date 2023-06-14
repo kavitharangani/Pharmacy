@@ -23,11 +23,9 @@ public interface SupplierBO extends SuperBO {
 
     public  double getTotalOrderSales() throws SQLException ;
 
-    public  List<String> getIds() throws SQLException;
-
     public boolean delete(String id) throws SQLException ;
 
     public  boolean update(SupplierDTO supplier) throws SQLException ;
 
-
+    List<String> getIds()throws SQLException ;
 }

@@ -2,17 +2,11 @@ package lk.ijse.pharmacy.bo.Custom.Impl;
 
 import lk.ijse.pharmacy.bo.Custom.EmployeeBO;
 import lk.ijse.pharmacy.bo.SuperBO;
-import lk.ijse.pharmacy.dao.CrudDAO;
-import lk.ijse.pharmacy.dao.Custom.CustomerDAO;
 import lk.ijse.pharmacy.dao.Custom.EmployeeDAO;
 import lk.ijse.pharmacy.dao.DAOFactory;
-import lk.ijse.pharmacy.dao.SQLUtil;
-import lk.ijse.pharmacy.entity.Customer;
 import lk.ijse.pharmacy.entity.Employee;
 import lk.ijse.pharmacy.model.EmployeesDTO;
-import lk.ijse.pharmacy.util.CrudUtil;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +41,11 @@ public class EmployeeBOImpl implements EmployeeBO, SuperBO {
         Employee employee = employeeDAO.search(id);
         return new EmployeesDTO(employee.getEmployeeName(),employee.getContact(),employee.getEmployeeId(),employee.getEmployeenic(),employee.getEmployeeAdress());
 
+    }
+
+    @Override
+    public List<String> generateEmployeeId() throws SQLException {
+        return employeeDAO.getId();
     }
 
 }

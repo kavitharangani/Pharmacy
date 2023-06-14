@@ -1,10 +1,11 @@
 package lk.ijse.pharmacy.bo.Custom;
 
 import lk.ijse.pharmacy.bo.SuperBO;
-import lk.ijse.pharmacy.model.CustomersDTO;
+import lk.ijse.pharmacy.entity.Employee;
 import lk.ijse.pharmacy.model.EmployeesDTO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface EmployeeBO extends SuperBO {
@@ -18,4 +19,5 @@ public interface EmployeeBO extends SuperBO {
 
     public EmployeesDTO searchEmployee(String id) throws SQLException;
 
+    List<String> generateEmployeeId() throws SQLException;
 }

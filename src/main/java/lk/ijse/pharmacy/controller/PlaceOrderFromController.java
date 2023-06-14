@@ -13,10 +13,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.pharmacy.bo.Custom.CustomerBO;
+import lk.ijse.pharmacy.bo.Custom.Impl.CustomerBOImpl;
+import lk.ijse.pharmacy.bo.Custom.Impl.MedicineBOImpl;
+import lk.ijse.pharmacy.bo.Custom.Impl.OrderBOImpl;
+import lk.ijse.pharmacy.bo.Custom.Impl.PurchaseOrderBOImpl;
+import lk.ijse.pharmacy.bo.Custom.MedicineBO;
+import lk.ijse.pharmacy.bo.Custom.OrderBO;
+import lk.ijse.pharmacy.bo.Custom.PurchaseOrderBO;
 import lk.ijse.pharmacy.db.DBConnection;
 import lk.ijse.pharmacy.model.CartPlaceOrderDTO;
 import lk.ijse.pharmacy.model.MedicineDTO;
-import lk.ijse.pharmacy.jhj.*;
 import lk.ijse.pharmacy.model.OrderTm;
 import lombok.SneakyThrows;
 import net.sf.jasperreports.engine.*;
@@ -96,20 +103,24 @@ public class PlaceOrderFromController implements Initializable {
     private Label lblqty;
 
     private ObservableList<OrderTm> obList = FXCollections.observableArrayList();
-
+     PurchaseOrderBO purchaseOrderBO = new PurchaseOrderBOImpl();
+     MedicineBO medicineBO = new MedicineBOImpl();
+     CustomerBO customerBO = new CustomerBOImpl();
+     OrderBO orderBO = new OrderBOImpl();
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
+        setCellValueFactory();
+
         String code =txtMeId.getSelectionModel().getSelectedItem();
         String description = lblDiscription.getText();
-        Integer qty = Integer.valueOf(txtQty1.getText());
+        Integer qty =Integer.valueOf(txtQty1.getText());
         Double unitPrice= Double.valueOf(lblUnitPrice.getText());
         Double tot =qty * unitPrice;
         Button btn = new Button("REMOVE");
 
-
         setRemoveBtnOnAction(btn);
         OrderTm tm=new OrderTm(code,description,qty,unitPrice,tot,btn);
-
+        System.out.println(code+description+qty+unitPrice+tot);
 
         obList.add(tm);
         tblOrderCart.setItems(obList);
@@ -120,7 +131,6 @@ public class PlaceOrderFromController implements Initializable {
 
     }
     private void setRemoveBtnOnAction(Button btn) {
-
         btn.setOnAction((e)->{
             ButtonType yes = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -181,7 +191,7 @@ public class PlaceOrderFromController implements Initializable {
         }
 
         try {
-            boolean isSave = PlaceOrderModel.save(CustomerId,OrderId,total,dtoList);
+            boolean isSave = purchaseOrderBO.save(CustomerId,OrderId,total,dtoList);
             if (isSave){
                 new Alert(Alert.AlertType.CONFIRMATION,"PLACED SUPPLIES").show();
                 addBill();
@@ -226,7 +236,7 @@ public class PlaceOrderFromController implements Initializable {
         String id = txtMeId.getSelectionModel().getSelectedItem();
 
         try {
-            MedicineDTO medicine = MedicineModel.search(id);
+            MedicineDTO medicine = medicineBO.search(id);
 
             lblDiscription.setText(medicine.getDescription());
             lblUnitPrice.setText(String.valueOf(medicine.getUnitPrize()));
@@ -249,34 +259,30 @@ public class PlaceOrderFromController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadMedicineId();
-        loadCustomerId();
-        setCellValueFactory();
-        generateNextOrderId();
-        loadDateAndTime();
+          loadMedicineId();
+          loadCustomerId();
+          setCellValueFactory();
+          generateNextOrderId();
+          loadDateAndTime();
     }
-    private void loadMedicineId() {
+    private void loadMedicineId() throws SQLException {
         ObservableList<String> obList= FXCollections.observableArrayList();
-        try {
-            List<String> ids= MedicineModel.generateMedicineId();
+        List<String> ids= null;
+        ids = purchaseOrderBO.generateMedicineId();
 
-            for (String id : ids){
-                obList.add(id);
-            }
-            txtMeId.setItems(obList);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        for (String id : ids){
+            obList.add(id);
         }
-
+        txtMeId.setItems(obList);
     }
+
     private void loadCustomerId() {
         ObservableList<String>obList=FXCollections.observableArrayList();
         try {
-            List<String>ids= CustomerModel.getIds();
+            ArrayList<String> ids= customerBO.getIds();
 
             for (String id : ids){
-                obList.add(id);
+                obList.add(String.valueOf(id));
             }
 
             txtCustomerId.setItems(obList);
@@ -285,12 +291,13 @@ public class PlaceOrderFromController implements Initializable {
         }
     }
     private void generateNextOrderId() {
+        String nextId = null;
         try {
-            String nextId = OrderModel.generateNextOrderId();
-            orderIdtxt.setText(nextId);
+            nextId = orderBO.generateNextOrderId();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        orderIdtxt.setText(nextId);
     }
 
     private void loadDateAndTime() {

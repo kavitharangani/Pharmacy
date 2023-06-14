@@ -15,7 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface SupplierDAO extends CrudDAO<Supplier> {
+     //boolean save(String orderId, LocalDate now, double total) ;
+
     public Supplier search(String id) throws SQLException;
+
     public boolean delete(String id) throws SQLException;
+
+    public List<String> getIds() throws SQLException;
+
+
 
 }

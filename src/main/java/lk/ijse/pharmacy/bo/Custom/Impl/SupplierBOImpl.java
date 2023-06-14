@@ -56,17 +56,6 @@ public class SupplierBOImpl implements SupplierBO, SuperBO {
 
     }
 
-    @Override
-    public List<String> getIds() throws SQLException {
-        String sql = "SELECT suppliesID FROM supplier";
-        ResultSet resultSet = CrudUtil.execute(sql);
-        List<String> id = new ArrayList<>();
-
-        while (resultSet.next()) {
-            id.add(resultSet.getString(1));
-        }
-        return getIds();
-    }
 
     @Override
     public boolean delete(String id) throws SQLException {
@@ -76,6 +65,13 @@ public class SupplierBOImpl implements SupplierBO, SuperBO {
     @Override
     public boolean update(SupplierDTO supplier) throws SQLException {
         return supplierDAO.update(new Supplier(supplier.getSuppliesID(),supplier.getContact(),supplier.getSuppliesName(),supplier.getSuppliesNic(),supplier.getSuppliesCompany()));
+    }
+
+    @Override
+    public List<String> getIds() throws SQLException {
+
+        return supplierDAO.getIds();
+
     }
 
 

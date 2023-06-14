@@ -12,7 +12,16 @@ public class DAOFactory {
         return (daoFactory == null)? daoFactory = new DAOFactory():daoFactory;
     }
 
-   public enum DAOTypes{
+    public static DAOFactory getDaoFactory() {
+        return daoFactory;
+    }
+
+
+    public static void setDaoFactory(DAOFactory daoFactory) {
+        DAOFactory.daoFactory = daoFactory;
+    }
+
+    public enum DAOTypes{
         CUSTOMER,ATTENDANCE,EMPLOYEE,MEDICINE,SUPPLIER,LOGIN,CARTPLACE_ORDER,ORDER,
    }
 
@@ -28,8 +37,6 @@ public class DAOFactory {
                 return new MedicineDAOImpl();
             case SUPPLIER:
                 return new SupplierDAOImpl();
-            case LOGIN:
-                return new LoginDAOImpl();
             case CARTPLACE_ORDER:
                 return new CartPlaceOrderDAOImpl();
             case ORDER:

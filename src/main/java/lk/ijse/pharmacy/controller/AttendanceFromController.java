@@ -10,13 +10,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.pharmacy.bo.BOFactory;
 import lk.ijse.pharmacy.bo.Custom.AttendanceBO;
+import lk.ijse.pharmacy.bo.Custom.EmployeeBO;
+import lk.ijse.pharmacy.bo.Custom.Impl.EmployeeBOImpl;
 import lk.ijse.pharmacy.model.AttendanceDTO;
-import lk.ijse.pharmacy.model.EmployeeDTO;
 import lk.ijse.pharmacy.model.AttendanceTm;
+import lk.ijse.pharmacy.model.EmployeesDTO;
 import lk.ijse.pharmacy.model.OrderTm;
-import lk.ijse.pharmacy.dao.Custom.Impl.AttendanceDAOImpl;
-import lk.ijse.pharmacy.jhj.EmployeeModel;
-import lombok.SneakyThrows;
+
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -70,39 +70,38 @@ public class AttendanceFromController implements Initializable {
     private JFXPanel root;
 
     AttendanceBO attendanceBO = (AttendanceBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ATTENDANCE);
-    private boolean isSave;
+    EmployeeBO employeeBO = new EmployeeBOImpl();
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws ParseException {
         String id = txtEmployeeId.getSelectionModel().getSelectedItem();
         RadioButton selectedButton = (RadioButton)btnGroup.getSelectedToggle();
         String text = selectedButton.getText();
-        String date = String.valueOf(LocalTime.now());
+        String date = String.valueOf(LocalDate.now());
+        String time = String.valueOf(LocalTime.now());
+
         ObservableList<AttendanceTm> obList = FXCollections.observableArrayList();
-        AttendanceTm tm = new AttendanceTm(id,date,LocalTime.now(),text);
+        AttendanceTm tm = new AttendanceTm(id,date,time,text);
         obList.add(tm);
         tblAttendens01.setItems(obList);
 
-       // AttendanceDTO attendance= new AttendanceDTO(id,text);
+        AttendanceDTO attendance= new AttendanceDTO(id,date,text);
         try {
-           // boolean isSave= AttendanceDAOImpl.save(attendance);
-            attendanceBO.save(new AttendanceDTO(id,date,LocalTime.now(),text));
+           boolean isSave = attendanceBO.save(attendance);
             if (isSave){
                 new Alert(Alert.AlertType.CONFIRMATION,"OK").show();
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-
 
     @FXML
     void cbmIdOnAction(ActionEvent event) {
         String id = txtEmployeeId.getSelectionModel().getSelectedItem();
 
         try {
-            EmployeeDTO employee = EmployeeModel.search(id);
+            EmployeesDTO employee = employeeBO.search(id);
 
             lblName.setText((String) employee.getEmployeeName());
 
@@ -111,12 +110,10 @@ public class AttendanceFromController implements Initializable {
         }
     }
 
-
-    @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadEmployeeId();
-        loadAttendance();
+ //       loadAttendance();
         loadDateAndTime();
         setvaluefortable();
     }
@@ -134,26 +131,21 @@ public class AttendanceFromController implements Initializable {
     }
 
 
-    private void loadAttendance() {
-        ObservableList<String> obList= FXCollections.observableArrayList();
-        try {
-            List<String> names= EmployeeModel.generateEmployeeAttendance();
-
-            for (String name : names){
-                obList.add(name);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void loadAttendance() {
+//        ObservableList<String> obList= FXCollections.observableArrayList();
+//        List<String> names= attendanceBO.generateEmployeeAttendance();
+//
+//        for (String name : names){
+//            obList.add(name);
+//        }
+//    }
 
     private void loadEmployeeId() {
-        ObservableList<String> obList= FXCollections.observableArrayList();
+        ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<String> ids= EmployeeModel.generateEmployeeId();
+            List<String> ids = employeeBO.generateEmployeeId();
 
-            for (String id : ids){
+            for (String id : ids) {
                 obList.add(id);
             }
             txtEmployeeId.setItems(obList);
@@ -162,5 +154,4 @@ public class AttendanceFromController implements Initializable {
             e.printStackTrace();
         }
     }
-
 }

@@ -8,35 +8,68 @@ public class MedicineDTO {
     private Double unitPrize;
     private Integer qtyOnStock;
 
-    public MedicineDTO(String id, String name, String description, String size, Double price, Integer qty) {
-
+    public MedicineDTO(String mediCode, String description, String name, String packSize, Double unitPrize, Integer qtyOnStock) {
+        this.mediCode = mediCode;
+        this.description = description;
+        this.name = name;
+        this.packSize = packSize;
+        this.unitPrize = unitPrize;
+        this.qtyOnStock = qtyOnStock;
     }
 
-    public MedicineDTO(String id, String name, String description, Double price, Integer qty, String size) {
-
+    public static int countMedicines() {
+        return 0;
     }
 
     public String getMediCode() {
-        return null;
+        return mediCode;
+    }
+
+    public void setMediCode(String mediCode) {
+        this.mediCode = mediCode;
     }
 
     public String getDescription() {
-        return null;
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
-        return null;
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPackSize() {
-        return null;
+        return packSize;
     }
 
-    public char[] getUnitPrize() {
-        return new char[0];
+    public void setPackSize(String packSize) {
+        this.packSize = packSize;
     }
 
-    public char[] getQtyOnStock() {
-        return new char[0];
+    public Double getUnitPrize() {
+        return unitPrize;
     }
+
+    public void setUnitPrize(Double unitPrize) {
+        this.unitPrize = unitPrize;
+    }
+
+    public Integer getQtyOnStock() {
+        return qtyOnStock;
+    }
+
+    public void setQtyOnStock(Integer qtyOnStock) {
+        this.qtyOnStock = qtyOnStock;
+    }
+
+
 }
+
+

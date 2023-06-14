@@ -82,7 +82,6 @@ public class EmployeeFromController {
             String id = txtEmID.getText();
             try {
                 EmployeesDTO employee= employeeBO.searchEmployee(id);
-                System.out.println(id);
                 if (employee != null) {
                     txtEmName.setText(employee.getEmployeeName());
                     txtEmContact.setText(employee.getContact());

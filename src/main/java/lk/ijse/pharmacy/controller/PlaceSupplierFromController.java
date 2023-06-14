@@ -13,11 +13,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.pharmacy.bo.Custom.CustomerBO;
+import lk.ijse.pharmacy.bo.Custom.Impl.*;
+import lk.ijse.pharmacy.bo.Custom.MedicineBO;
+import lk.ijse.pharmacy.bo.Custom.SupplierBO;
 import lk.ijse.pharmacy.db.DBConnection;
 import lk.ijse.pharmacy.model.CartPlaceOrderDTO;
 import lk.ijse.pharmacy.model.MedicineDTO;
 import lk.ijse.pharmacy.model.SuppliyerTm;
-import lk.ijse.pharmacy.jhj.*;
 import lombok.SneakyThrows;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
@@ -100,6 +103,10 @@ public class PlaceSupplierFromController implements Initializable {
 
 
     private ObservableList<SuppliyerTm> obList = FXCollections.observableArrayList();
+       MedicineBO medicineBO = new MedicineBOImpl();
+//      CustomerBO customerBO = new CustomerBOImpl();
+//      SupplierBO supplierBO = new SupplierBOImpl();
+    PurchaseSupplierBOImpl purchaseSupplierBO = new PurchaseSupplierBOImpl();
 
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
@@ -113,6 +120,7 @@ public class PlaceSupplierFromController implements Initializable {
 
         setRemoveBtnOnAction(btn);
         SuppliyerTm tm = new SuppliyerTm(code, description, qty, unitPrice, tot, btn);
+        System.out.println(code+description+qty+unitPrice+tot);
 
         obList.add(tm);
         tblOrderCart.setItems(obList);
@@ -142,10 +150,9 @@ public class PlaceSupplierFromController implements Initializable {
     private void netTotal() {
         double netTotal = 0.0;
         for (int i = 0; i < tblOrderCart.getItems().size(); i++) {
-
-            netTotal = netTotal + (Double) colTotal.getCellData(i);
+            double total  = (double) colTotal.getCellData(i);
+            netTotal += total;
         }
-        System.out.println(netTotal);
         lblNetTotal.setText(String.valueOf(netTotal));
     }
 
@@ -181,13 +188,13 @@ public class PlaceSupplierFromController implements Initializable {
         for (int i = 0; i < tblOrderCart.getItems().size(); i++) {
             SuppliyerTm tm = obList.get(i);
 
-            CartPlaceOrderDTO cartSuppliesDto = new CartPlaceOrderDTO(tm.getCode(), tm.getQty());
+            CartPlaceOrderDTO cartSuppliesDtokavi = new CartPlaceOrderDTO(tm.getCode(), tm.getQty());
 
-            dtoList.add(cartSuppliesDto);
+            dtoList.add(cartSuppliesDtokavi);
         }
 
         try {
-            boolean isSave = PlaceSupplierModel.save(CustomerId, OrderId, total, dtoList);
+            boolean isSave = purchaseSupplierBO.save(CustomerId, OrderId, total, dtoList);
             if (isSave) {
                 new Alert(Alert.AlertType.CONFIRMATION, "PLACED SUPPLIES").show();
                 addBill();
@@ -232,7 +239,7 @@ public class PlaceSupplierFromController implements Initializable {
         String id = (String) txtMeId.getSelectionModel().getSelectedItem();
 
         try {
-            MedicineDTO medicine = MedicineModel.search(id);
+            MedicineDTO medicine = medicineBO.search(id);
 
             lblDiscription.setText(medicine.getDescription());
             lblUnitPrice.setText(String.valueOf(medicine.getUnitPrize()));
@@ -247,14 +254,14 @@ public class PlaceSupplierFromController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadMedicineId();
-        loadSupplierId();
-        setCellValueFactor();
-        generateNextOrderId();
-        loadDateAndTime();
+          loadMedicineId();
+          loadSupplierId();
+          setCellValueFactory();
+          generateNextOrderId();
+          loadDateAndTime();
     }
 
-    private void setCellValueFactor() {
+    void setCellValueFactory() {
         colItemCode.setCellValueFactory(new PropertyValueFactory<>("code"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
@@ -268,26 +275,22 @@ public class PlaceSupplierFromController implements Initializable {
         lblTime.setText(String.valueOf(LocalTime.now()));
     }
 
-    private void loadMedicineId() {
+    private void loadMedicineId() throws SQLException {
         ObservableList<String> obList = FXCollections.observableArrayList();
-        try {
-            List<String> ids = MedicineModel.generateMedicineId();
+        List<String> ids = null;
+        ids = purchaseSupplierBO.generateMedicineId();
 
-            for (String id : ids) {
-                obList.add(id);
-            }
-            txtMeId.setItems(obList);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        for (String id : ids) {
+            obList.add(id);
         }
+        txtMeId.setItems(obList);
 
     }
 
     private void loadSupplierId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<String> ids = SupplierModel.getIds();
+            List<String> ids = purchaseSupplierBO.getIds();
 
             for (String id : ids) {
                 obList.add(id);
@@ -299,10 +302,10 @@ public class PlaceSupplierFromController implements Initializable {
         }
     }
 
-    private void generateNextOrderId() {
+    private void generateNextOrderId()  {
         String nextId = null;
         try {
-            nextId = SupplierDetailModel.generateNextOrderId();
+            nextId = purchaseSupplierBO.generateNextOrderId();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -310,6 +313,19 @@ public class PlaceSupplierFromController implements Initializable {
     }
 
     public void cmbIdOnAction(ActionEvent actionEvent) {
+        String id = txtMeId.getSelectionModel().getSelectedItem();
+
+        try {
+            MedicineDTO medicine = medicineBO.search(id);
+
+            lblDiscription.setText(medicine.getDescription());
+            lblUnitPrice.setText(String.valueOf(medicine.getUnitPrize()));
+            lblqty.setText(String.valueOf(medicine.getQtyOnStock()));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

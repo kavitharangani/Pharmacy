@@ -1,22 +1,20 @@
 package lk.ijse.pharmacy.bo.Custom;
 
 import lk.ijse.pharmacy.bo.SuperBO;
-import lk.ijse.pharmacy.db.DBConnection;
-import lk.ijse.pharmacy.util.CrudUtil;
+import lk.ijse.pharmacy.entity.Supplier;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public interface OrderBO extends SuperBO {
     public  boolean save(String orderId, LocalDate now, String customerId, double total) throws SQLException ;
 
-    public  String generateNextOrderId() throws SQLException ;
-
     public  String splitOrderId(String currentOrderId) ;
 
-    public int countOrders() throws SQLException ;
+    public ArrayList<Supplier> countOrders() throws SQLException ;
 
-    public  double getTotalOrderSales() throws SQLException;
+    String generateNextOrderId()throws SQLException;
+
+    double getTotalOrderSales() throws SQLException;
 }

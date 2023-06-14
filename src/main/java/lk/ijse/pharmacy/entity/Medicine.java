@@ -8,31 +8,19 @@ public class Medicine {
     private double unitPrize;
     private int qtyOnStock;
 
-    public Medicine(String mediCode){
-        this.mediCode= this.mediCode;
-        this.description= this.description;
-        this.name= this.name;
-        this.packSize=packSize;
-        this.unitPrize= this.unitPrize;
-        this.qtyOnStock= this.qtyOnStock;
+    public Medicine(String mediCode, String description, String name, String packSize, double unitPrize, int qtyOnStock) {
+        this.mediCode = mediCode;
+        this.description = description;
+        this.name = name;
+        this.packSize = packSize;
+        this.unitPrize = unitPrize;
+        this.qtyOnStock = qtyOnStock;
     }
 
-
-    public Medicine(String mediCode, String description, String name, String packSize, char[] unitPrize, char[] qtyOnStock) {
+    public Medicine(String mediCode) {
+        this.mediCode=mediCode;
     }
 
-
-    public Medicine(String employeeName, String contact, String employeeId, String employeenic, String employeeAddress) {
-
-    }
-
-    public Medicine(String s, String code, String description, String name, String mediCode, Double unitPrize, Integer qtyOnStock) {
-
-    }
-
-    public Medicine(String mediCode, String description, String name, String packSize, Double unitPrize, Integer qtyOnStock) {
-
-    }
 
     public String getMediCode() {
         return mediCode;

@@ -3,7 +3,6 @@ package lk.ijse.pharmacy.bo.Custom;
 import javafx.collections.ObservableList;
 import lk.ijse.pharmacy.bo.SuperBO;
 import lk.ijse.pharmacy.entity.Customer;
-import lk.ijse.pharmacy.model.CustomerDTO;
 import lk.ijse.pharmacy.model.CustomersDTO;
 
 import java.sql.SQLException;
@@ -18,10 +17,11 @@ public interface CustomerBO extends SuperBO {
 
     public  boolean update(CustomersDTO customer) throws SQLException ;
 
-    public ArrayList<CustomerDTO> getIds() throws SQLException, ClassNotFoundException ;
+    public ArrayList<String> getIds() throws SQLException ;
 
     public CustomersDTO searchCustomer(String id) throws SQLException;
 
     public boolean deleteCustomer(String id) throws SQLException;
 
+    int countCustomers() throws SQLException;
 }

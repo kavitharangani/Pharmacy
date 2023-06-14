@@ -1,12 +1,7 @@
 package lk.ijse.pharmacy.dao.Custom.Impl;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import lk.ijse.pharmacy.dao.Custom.CustomerDAO;
-import lk.ijse.pharmacy.dao.SQLUtil;
 import lk.ijse.pharmacy.entity.Customer;
-import lk.ijse.pharmacy.model.CustomerDTO;
-import lk.ijse.pharmacy.model.CustomersDTO;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -14,9 +9,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lk.ijse.pharmacy.jhj.CustomerModel.next;
-
 public class CustomerDAOImpl implements CustomerDAO {
+
+    public static int countCustomers() throws SQLException {
+        String sql = "SELECT COUNT(*) as customerCount FROM pharmacy.customer;";
+        ResultSet resultSet = CrudUtil.execute(sql);
+        int count = 0 ;
+        if (resultSet.next()) {
+            count =  resultSet.getInt(1);
+        }
+        return count;
+    }
 
     @Override
     public boolean save(Customer dto) throws SQLException {
@@ -50,14 +53,19 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public ArrayList<Customer> getIds() throws SQLException {
+    public List<String> getIds() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getId() throws SQLException {
         ArrayList<String> allCustomers = new ArrayList<>();
         ResultSet resultSet = CrudUtil.execute("SELECT custId FROM customer");
         if ((resultSet.next())) {
-            String id = resultSet.getString("id");
+            String id = resultSet.getString(1);
             allCustomers.add(id);
         }
-        return getIds();
+        return allCustomers;
 
     }
 

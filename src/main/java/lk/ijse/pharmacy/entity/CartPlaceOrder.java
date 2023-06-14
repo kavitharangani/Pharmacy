@@ -4,7 +4,7 @@ public class CartPlaceOrder {
     private String code;
     private Integer qty;
 
-    public  CartPlaceOrder(String code,Integer qty){
+    public  CartPlaceOrder (String code,Integer qty){
         this.code=code;
         this.qty=qty;
     }

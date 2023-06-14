@@ -1,12 +1,12 @@
 package lk.ijse.pharmacy.dao.Custom.Impl;
 
 import lk.ijse.pharmacy.dao.Custom.SupplierDAO;
-import lk.ijse.pharmacy.dao.SQLUtil;
 import lk.ijse.pharmacy.entity.*;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +23,7 @@ public class SupplierDAOImpl implements SupplierDAO {
     public boolean delete(String id) throws SQLException {
         return CrudUtil.execute("DELETE FROM supplier WHERE suppliesID= ?",id);
     }
+
 
 
     @Override
@@ -46,17 +47,18 @@ public class SupplierDAOImpl implements SupplierDAO {
         return CrudUtil.execute("UPDATE supplier SET contact=?,suppliesName=?,suppliesNic=?,suppliesCompany=? WHERE suppliesID=?",dto.getContact(),dto.getSuppliesName(),dto.getSuppliesNic(),dto.getSuppliesCompany(),dto.getSuppliesID());
     }
 
-    @Override
-    public ArrayList<Supplier> getIds() throws SQLException {
+    public List<String> getIds() throws SQLException {
         String sql = "SELECT suppliesID FROM supplier";
         ResultSet resultSet = CrudUtil.execute(sql);
-        List<String> id = new ArrayList<>();
+        List<String>id = new ArrayList<>();
 
-        while (resultSet.next()) {
+        while (resultSet.next()){
             id.add(resultSet.getString(1));
         }
-        return getIds();
+        return id;
     }
+
+
 }
 
 

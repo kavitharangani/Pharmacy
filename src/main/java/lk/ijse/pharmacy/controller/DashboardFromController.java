@@ -10,11 +10,21 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.pharmacy.bo.Custom.CustomerBO;
+import lk.ijse.pharmacy.bo.Custom.Impl.CustomerBOImpl;
+import lk.ijse.pharmacy.bo.Custom.Impl.MedicineBOImpl;
+import lk.ijse.pharmacy.bo.Custom.Impl.OrderBOImpl;
+import lk.ijse.pharmacy.bo.Custom.MedicineBO;
+import lk.ijse.pharmacy.bo.Custom.OrderBO;
+import lk.ijse.pharmacy.dao.Custom.Impl.CustomerDAOImpl;
+import lk.ijse.pharmacy.dao.Custom.Impl.MedicineDAOImpl;
+import lk.ijse.pharmacy.dao.Custom.Impl.OrderDAOImpl;
 import lk.ijse.pharmacy.entity.Medicine;
 import lk.ijse.pharmacy.entity.Supplier;
-import lk.ijse.pharmacy.jhj.CustomerModel;
-import lk.ijse.pharmacy.jhj.MedicineModel;
-import lk.ijse.pharmacy.jhj.OrderModel;
+import lk.ijse.pharmacy.model.CustomersDTO;
+import lk.ijse.pharmacy.model.MedicineDTO;
+import lk.ijse.pharmacy.model.OrderTm;
+
 
 import java.io.IOException;
 import java.net.URI;
@@ -49,17 +59,19 @@ public class DashboardFromController {
     private PlaceSupplierFromController clmIncome;
     private ChoiceBox tblIncome;
     private Object SalesModel;
-
+    MedicineBO medicineBO = new MedicineBOImpl();
+    CustomerBO customerBO = new CustomerBOImpl();
+    OrderBO orderBO = new OrderBOImpl();
 
     @FXML
     public void initialize(){
 
         try {
-            int customerCount = CustomerModel.countCustomers();
-            ArrayList<Supplier> countOrders = OrderModel.countOrders();
-            double totalOrderSales = OrderModel.getTotalOrderSales();
-            ArrayList<Medicine> medicineCount= MedicineModel.countMedicines();
-            double totalMonthlySales = OrderModel.getTotalOrderSales();
+            int customerCount = CustomerDAOImpl.countCustomers();
+            int countOrders = OrderDAOImpl.countOrders();
+            double totalOrderSales = OrderDAOImpl.getTotalOrderSales();
+            int medicineCount= MedicineDAOImpl.countMedicines();
+            double totalMonthlySales = OrderDAOImpl.getTotalOrderSales();
 
             lblTotalCustomer.setText(String.valueOf(customerCount));
             lblTotalOrders.setText(String.valueOf(countOrders));
@@ -69,19 +81,18 @@ public class DashboardFromController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
+
     }
-
-
 
     @FXML
     void btnOnWhatsappAction(ActionEvent event) {
         try {
-            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+           java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
             URI uri = new URI("https://www.whatsapp.com/");
-            desktop.browse(uri);
+           desktop.browse(uri);
         } catch (Exception ex) {
-            ex.printStackTrace();
+           ex.printStackTrace();
         }
     }
 
@@ -94,14 +105,14 @@ public class DashboardFromController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
+
     @FXML
     void btnOnTwitterAction(ActionEvent event) {
-        try {
+       try {
             java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
             URI uri = new URI("https://www.twitter.com/");
-            desktop.browse(uri);
+           desktop.browse(uri);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -117,9 +128,6 @@ public class DashboardFromController {
             ex.printStackTrace();
         }
     }
-
-
-
 
     @FXML
     void btnCustomerOnAction(ActionEvent event) throws IOException {
@@ -195,13 +203,5 @@ public class DashboardFromController {
         stage.setScene(scene);
         stage.setTitle("/view/login_form.fxml");
         stage.centerOnScreen();
-    }
-
-
-
-    class IncomeTo {
-    }
-
-    private class Desktop {
     }
 }
