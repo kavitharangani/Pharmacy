@@ -25,4 +25,6 @@ public interface PurchaseOrderBO extends SuperBO {
     boolean save(String customerId, String orderId, double total, List<CartPlaceOrderDTO> dtoList) throws SQLException;
 
     List<String> generateMedicineId() throws SQLException;
+
+
 }

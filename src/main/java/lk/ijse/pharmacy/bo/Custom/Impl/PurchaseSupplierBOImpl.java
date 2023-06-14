@@ -21,6 +21,8 @@ public class PurchaseSupplierBOImpl implements PurchaseOrderBO {
     MedicineDAO medicineDAO = (MedicineDAO) DAOFactory.daoFactory().getDAO(DAOFactory.DAOTypes.MEDICINE);
     OrderDAO OrderDAO = (OrderDAO) DAOFactory.daoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
     private PurchaseSupplierBOImpl cartSupplierOrderDAO;
+    private List<CartPlaceOrderDTO> suppliesId;
+    private String suppliesOrderId;
 
     @Override
     public boolean save(CartPlaceOrder dto) throws SQLException {
@@ -75,14 +77,15 @@ public class PurchaseSupplierBOImpl implements PurchaseOrderBO {
             connection = DBConnection.getInstance().getConnection();
             connection.setAutoCommit(false);
 
-            boolean isSave =cartSupplierOrderDAO.save(orderId,LocalDate.now(),total);
+            boolean isSave =SupplierDAO.save(orderId,LocalDate.now(),total);
             if (isSave){
-                boolean isUpdated = medicineDAO.updateQtySupplies(dtoList);
-                if (isUpdated){
-                    boolean isSaveOrderDetail = OrderDetailDAO.save(orderId,dtoList,total);
-                    if(isSaveOrderDetail) {
+                boolean isUpdated = MedicineDAO.updateQtySupplies(dtoList);
+                if (isUpdated) {
+                    boolean isSaveOrderDetail = OrderDetailDAO.save(orderId, dtoList, total);
+                    if (isSaveOrderDetail) {
                         connection.commit();
                         return true;
+
                     }
                 }
             }
@@ -96,10 +99,7 @@ public class PurchaseSupplierBOImpl implements PurchaseOrderBO {
         }
     }
 
-    private boolean save(String orderId, LocalDate now, double total) throws SQLException {
-        String sql ="INSERT INTO suppliesorder(suppliesOrderID,Date,total)VALUES (?,?,?)";
-        return CrudUtil.execute(sql,orderId,now,total);
-    }
+
 
     public String generateNextOrderId() throws SQLException {
         String sql = "SELECT  suppliesOrderId FROM suppliesorder ORDER BY suppliesOrderId DESC LIMIT 1";

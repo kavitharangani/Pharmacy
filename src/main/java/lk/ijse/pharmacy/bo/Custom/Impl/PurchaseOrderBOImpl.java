@@ -65,9 +65,9 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
             boolean isSave =cartPlaceOrderDAO.save(orderId, LocalDate.now(),customerId,total);
             if (isSave){
-                boolean isUpdated = medicineDAO.updateQtySupplies(dtoList);
+                boolean isUpdated = cartPlaceOrderDAO.updateQtySupplies(dtoList);
                 if (isUpdated){
-                    boolean isSaveOrderDetail = OrderDetailDAO.save1(orderId,dtoList);
+                    boolean isSaveOrderDetail = cartPlaceOrderDAO.save(orderId,dtoList);
                     if(isSaveOrderDetail) {
                         connection.commit();
                         return true;

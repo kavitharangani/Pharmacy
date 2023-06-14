@@ -3,6 +3,7 @@ package lk.ijse.pharmacy.dao.Custom.Impl;
 import lk.ijse.pharmacy.dao.Custom.CartPlaceOrderDAO;
 import lk.ijse.pharmacy.db.DBConnection;
 import lk.ijse.pharmacy.entity.CartPlaceOrder;
+import lk.ijse.pharmacy.model.CartPlaceOrderDTO;
 import lk.ijse.pharmacy.util.CrudUtil;
 
 import java.sql.Connection;
@@ -13,12 +14,29 @@ import java.util.List;
 
 public class CartPlaceOrderDAOImpl implements CartPlaceOrderDAO {
 
+    private String orderId;
+    private LocalDate now;
+    private String customerId;
+    private double total;
+
     public boolean save(String orderId, LocalDate now, String customerId, double total) throws SQLException {
         String sql ="INSERT INTO orders(orderId,orderDate,custID,total)VALUES (?,?,?,?)";
         return CrudUtil.execute(sql,orderId,now,customerId,total);
     }
 
-       public String generateNextOrderId() throws SQLException {
+
+
+    @Override
+    public boolean save(String orderId, List<CartPlaceOrderDTO> dtoList) {
+        return false;
+    }
+
+    @Override
+    public boolean updateQtySupplies(List<CartPlaceOrderDTO> dtoList) {
+        return false;
+    }
+
+    public String generateNextOrderId() throws SQLException {
         Connection con = DBConnection.getInstance().getConnection();
 
         String sql = "SELECT orderId FROM Orders ORDER BY orderId DESC LIMIT 1";
@@ -85,4 +103,6 @@ public class CartPlaceOrderDAOImpl implements CartPlaceOrderDAO {
     public List<String> getIds() throws SQLException {
         return null;
     }
+
+
 }
