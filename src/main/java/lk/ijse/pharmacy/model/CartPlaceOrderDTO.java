@@ -1,19 +1,19 @@
 package lk.ijse.pharmacy.model;
 
 public class CartPlaceOrderDTO {
-    private Object code;
+    private String code;
     private Integer qty;
 
-    public CartPlaceOrderDTO(Object code, Integer qty) {
+    public CartPlaceOrderDTO(String code, Integer qty) {
                this.code = code;
                this.qty = qty;
     }
 
-    public Object getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(Object code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

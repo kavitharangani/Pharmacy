@@ -8,9 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface MedicineDAO extends CrudDAO<Medicine> {
-    static boolean updateQtySupplies(List<CartPlaceOrderDTO> dtoList) {
-        return false;
-    }
+     boolean updateQtySupplies(List<CartPlaceOrderDTO> dtoList) throws SQLException;
 
     boolean save(Medicine dto) throws SQLException;
 

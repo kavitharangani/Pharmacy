@@ -8,10 +8,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface SupplierDAO extends CrudDAO<Supplier> {
-    static boolean save(String orderId, LocalDate now, double total) {
-        return false;
-    }
-    //boolean save(String orderId, LocalDate now, double total) ;
+
+     boolean save(String orderId, LocalDate now, double total) throws SQLException;
 
     public Supplier search(String id) throws SQLException;
 

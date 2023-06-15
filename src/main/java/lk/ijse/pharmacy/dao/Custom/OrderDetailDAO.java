@@ -10,14 +10,17 @@ import java.util.Collections;
 import java.util.List;
 
 public interface OrderDetailDAO {
-    public static boolean save(String orderId, List<CartPlaceOrderDTO> dtoList, double total) throws SQLException {
-        for (CartPlaceOrderDTO dto : dtoList) {
-            if (!save(orderId, Collections.singletonList(dto), total)) {
-                return false;
-            }
-        }
-        return true;
-    }
+
+    public boolean save(String orderId, List<CartPlaceOrderDTO> dtoList, double total) throws SQLException;
+
+//    public  boolean save(String orderId, List<CartPlaceOrderDTO> dtoList, double total) throws SQLException ;
+//        for (CartPlaceOrderDTO dto : dtoList) {
+//            if (!save(orderId, Collections.singletonList(dto), total)) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
 //    private static boolean save(LocalDate orderId, List<CartPlaceOrderDTO> dto, List<CartPlaceOrderDTO> total) throws SQLException {
 //        String sql = "INSERT INTO supplieorderdetail VALUES (?,?,?,?)";

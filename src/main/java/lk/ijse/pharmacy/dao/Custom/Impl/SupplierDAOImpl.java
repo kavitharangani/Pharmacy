@@ -25,6 +25,11 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
 
+    @Override
+    public boolean save(String orderId, LocalDate now, double total) throws SQLException {
+        String sql ="INSERT INTO suppliesorder(suppliesOrderID,Date,total)VALUES (?,?,?)";
+        return CrudUtil.execute(sql,orderId,now,total);
+    }
 
     @Override
     public Supplier search(String id) throws SQLException {

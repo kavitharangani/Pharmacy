@@ -211,11 +211,26 @@ public class PlaceOrderFromController implements Initializable {
         load.setQuery(newQuery);
         JasperReport js = JasperCompileManager.compileReport(load);
         HashMap<String,Object> hm=new HashMap<>();
+        hm.put("pha","Name");
+        //hm.put("orderId","O001");
+        JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
+        JasperViewer viewer = new JasperViewer(jp, false);
+        viewer.show();
+
+        /*String id = orderIdtxt.getText();
+        JasperDesign load = null;
+        load = JRXmlLoader.load(new File("E:\\KaviProject\\src\\main\\resources\\report\\newReport.jrxml"));
+        JRDesignQuery newQuery = new JRDesignQuery();
+        String sql = "select i.description as name,i.unitPrice as unitPrice,oi.orderQTY , i.unitPrice*oi.orderQTY as subTotal  from medicine i inner join orderdetail oi on  i.mediCode=oi.medicode where oi.orderId = '"+id+"'";
+        newQuery.setText(sql);
+        load.setQuery(newQuery);
+        JasperReport js = JasperCompileManager.compileReport(load);
+        HashMap<String,Object> hm=new HashMap<>();
         hm.put("pharmacyOrder","Name");
         hm.put("orderId","O001");
         JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
         JasperViewer viewer = new JasperViewer(jp, false);
-        viewer.show();
+        viewer.show();*/
 
         lblDiscription.setText("");
         txtQty1.setText("");

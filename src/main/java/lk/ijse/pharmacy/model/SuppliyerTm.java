@@ -61,7 +61,7 @@ public class SuppliyerTm {
         this.btn = btn;
     }
 
-    public Object getCode() {
+    public String getCode() {
         return code;
     }
 

@@ -183,7 +183,6 @@ public class PlaceSupplierFromController implements Initializable {
         String OrderId = orderIdtxt.getText();
         double total = Double.parseDouble(lblNetTotal.getText());
 
-        System.out.println(OrderId);
         List<CartPlaceOrderDTO> dtoList = new ArrayList<>();
         for (int i = 0; i < tblOrderCart.getItems().size(); i++) {
             SuppliyerTm tm = obList.get(i);

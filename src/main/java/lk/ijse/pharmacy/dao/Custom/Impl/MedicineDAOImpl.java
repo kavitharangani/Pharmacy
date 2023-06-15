@@ -23,20 +23,20 @@ public class MedicineDAOImpl implements MedicineDAO {
     }
 
     @Override
+    public boolean updateQtySupplies(List<CartPlaceOrderDTO> dtoList) throws SQLException {
+        for (CartPlaceOrderDTO dto : dtoList){
+            if(!updateQtySupplies1(dto)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
     public boolean save(Medicine dto) throws SQLException {
         return CrudUtil.execute("INSERT INTO medicine (mediCode,description,name,packSize,unitPrice,qtyOnStock)VALUES (?,?,?,?,?,?)", dto.getMediCode(), dto.getDescription(), dto.getName(), dto.getPackSize(), dto.getUnitPrize(), dto.getQtyOnStock());
 
     }
-//
-//    @Override
-//    public boolean updateQtySupplies(List<CartPlaceOrderDTO> dtoList) throws SQLException {
-//        for (CartPlaceOrderDTO dto : dtoList){
-//            if(!updateQtySupplies1(dto)){
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 
     private boolean updateQtySupplies1(CartPlaceOrderDTO dto) throws SQLException {
         String sql = "UPDATE medicine SET qtyOnStock = (qtyOnStock - ?) WHERE mediCode = ?";

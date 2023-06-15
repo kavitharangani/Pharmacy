@@ -2,6 +2,8 @@ package lk.ijse.pharmacy.bo.Custom.Impl;
 
 import lk.ijse.pharmacy.bo.Custom.PurchaseOrderBO;
 import lk.ijse.pharmacy.dao.Custom.*;
+import lk.ijse.pharmacy.dao.Custom.Impl.OrderDetailDAOImpl;
+import lk.ijse.pharmacy.dao.Custom.Impl.SupplierDAOImpl;
 import lk.ijse.pharmacy.dao.DAOFactory;
 import lk.ijse.pharmacy.db.DBConnection;
 import lk.ijse.pharmacy.entity.CartPlaceOrder;
@@ -20,6 +22,8 @@ public class PurchaseSupplierBOImpl implements PurchaseOrderBO {
     CustomerDAO customerDAO = (CustomerDAO) DAOFactory.daoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
     MedicineDAO medicineDAO = (MedicineDAO) DAOFactory.daoFactory().getDAO(DAOFactory.DAOTypes.MEDICINE);
     OrderDAO OrderDAO = (OrderDAO) DAOFactory.daoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
+    SupplierDAO supplierDAO = new SupplierDAOImpl();
+    OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
     private PurchaseSupplierBOImpl cartSupplierOrderDAO;
     private List<CartPlaceOrderDTO> suppliesId;
     private String suppliesOrderId;
@@ -71,17 +75,18 @@ public class PurchaseSupplierBOImpl implements PurchaseOrderBO {
 
     @Override
     public boolean save(String customerId, String orderId, double total, List<CartPlaceOrderDTO> dtoList) throws SQLException {
+
         Connection connection = null;
 
         try {
             connection = DBConnection.getInstance().getConnection();
             connection.setAutoCommit(false);
 
-            boolean isSave =SupplierDAO.save(orderId,LocalDate.now(),total);
+            boolean isSave =supplierDAO.save(orderId,LocalDate.now(),total);
             if (isSave){
-                boolean isUpdated = MedicineDAO.updateQtySupplies(dtoList);
+                boolean isUpdated = medicineDAO.updateQtySupplies(dtoList);
                 if (isUpdated) {
-                    boolean isSaveOrderDetail = OrderDetailDAO.save(orderId, dtoList, total);
+                    boolean isSaveOrderDetail = orderDetailDAO.save(orderId, dtoList, total);
                     if (isSaveOrderDetail) {
                         connection.commit();
                         return true;

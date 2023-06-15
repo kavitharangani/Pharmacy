@@ -63,5 +63,4 @@ public class MedicineBOImpl implements MedicineBO, SuperBO {
         }
         return id;
     }
-
 }
