@@ -57,7 +57,7 @@ public class MedicineFromController {
 
     @FXML
     void btnSearchOnaction(ActionEvent event) {
-
+        if (txtMeId2.getText().matches("^[M0-9]{4}$")){
             String id = txtMeId2.getText();
             try {
                 MedicineDTO medicine = medicineBO.search(id);
@@ -70,12 +70,16 @@ public class MedicineFromController {
                     txtPackSize.setText(medicine.getPackSize());
                     txtPrice.setText(String.valueOf(medicine.getUnitPrize()));
                     txtQty.setText(String.valueOf(medicine.getQtyOnStock()));
+
                 } else {
                 new Alert(Alert.AlertType.ERROR, "Medicine Not Found").show();
             }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Medicine Not Found").show();
+        }
     }
 
     @FXML

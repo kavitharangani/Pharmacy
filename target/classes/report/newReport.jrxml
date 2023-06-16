@@ -72,8 +72,8 @@
 				<text><![CDATA[Sanethu Pharmacy, Anuradhapura Road, Balalla                                  0718547123]]></text>
 			</staticText>
 			<image>
-				<reportElement x="-2" y="-15" width="122" height="100" uuid="ba681815-538a-4024-9393-8889be72b8ca"/>
-				<imageExpression><![CDATA["E:/KaviProject/src/main/resources/img/LOGO.jpg"]]></imageExpression>
+				<reportElement x="0" y="0" width="90" height="80" uuid="aa08dfaf-6e8a-4255-8042-dd2eda7b6a14"/>
+				<imageExpression><![CDATA["D:/2nd Semester/Pharmacy/src/main/resources/img/111.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -133,7 +133,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="60" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="10" width="100" height="30" uuid="34ab2cfa-606c-4950-8316-f59e18db44c0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a082a199-7c1c-4a37-bc24-12840c96a498"/>

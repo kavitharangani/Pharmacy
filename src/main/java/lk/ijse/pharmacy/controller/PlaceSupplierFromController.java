@@ -47,7 +47,6 @@ public class PlaceSupplierFromController implements Initializable {
     @FXML
     private Label orderIdtxt;
 
-
     @FXML
     private TableView<SuppliyerTm> tblOrderCart;
 
@@ -164,7 +163,6 @@ public class PlaceSupplierFromController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("/view/dashboard_from.fxml");
         stage.centerOnScreen();
-
     }
 
     @FXML
@@ -202,10 +200,11 @@ public class PlaceSupplierFromController implements Initializable {
             e.printStackTrace();
         }
     }
+
     private void addBill() throws JRException, SQLException {
         String id = orderIdtxt.getText();
         JasperDesign load = null;
-        load = JRXmlLoader.load(new File("E:\\KaviProject\\src\\main\\resources\\report\\supplierReport.jrxml"));
+        load = JRXmlLoader.load(new File("D:\\2nd Semester\\Pharmacy\\src\\main\\resources\\report\\supplierReport.jrxml"));
         JRDesignQuery newQuery = new JRDesignQuery();
         String sql = "select i.description as name,i.unitPrice as unitPrice,oi.orderQTY , i.unitPrice*oi.orderQTY as subTotal  from medicine i inner join supplieorderdetail oi on  i.mediCode=oi.medicode where oi.suppliesOrderId = '"+id+"'";
         newQuery.setText(sql);
@@ -217,7 +216,6 @@ public class PlaceSupplierFromController implements Initializable {
         JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
         JasperViewer viewer = new JasperViewer(jp, false);
         viewer.show();
-
 
         lblDiscription.setText("");
         txtQty1.setText("");
@@ -245,7 +243,7 @@ public class PlaceSupplierFromController implements Initializable {
             lblqty.setText(String.valueOf(medicine.getQtyOnStock()));
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR).show();
         }
 
     }

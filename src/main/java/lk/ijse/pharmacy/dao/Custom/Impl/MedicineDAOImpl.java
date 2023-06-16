@@ -51,9 +51,17 @@ public class MedicineDAOImpl implements MedicineDAO {
 
     @Override
     public Medicine search(String id) throws SQLException {
-        ResultSet resultSet=CrudUtil.execute("SELECT * FROM medicine WHERE medicode=?",id+"");
+        String sql = "SELECT * FROM medicine WHERE medicode=?";
+        ResultSet resultSet=CrudUtil.execute(sql,id);
         if(resultSet.next()) {
-            return new Medicine(id + "", resultSet.getString("description"), resultSet.getString("name"), resultSet.getString("packSize"), resultSet.getDouble("unitPrice"), resultSet.getInt("qtyOnStock"));
+            return new Medicine(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getDouble(5),
+                    resultSet.getInt(6)
+            );
         }
         return null;
     }

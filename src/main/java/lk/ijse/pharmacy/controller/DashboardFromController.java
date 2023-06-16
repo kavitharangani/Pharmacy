@@ -59,9 +59,6 @@ public class DashboardFromController {
     private PlaceSupplierFromController clmIncome;
     private ChoiceBox tblIncome;
     private Object SalesModel;
-    MedicineBO medicineBO = new MedicineBOImpl();
-    CustomerBO customerBO = new CustomerBOImpl();
-    OrderBO orderBO = new OrderBOImpl();
 
     @FXML
     public void initialize(){

@@ -80,8 +80,8 @@
 				<text><![CDATA[INVOICE]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="-10" width="105" height="100" uuid="0d11a347-0716-4aa5-8167-cf8318f39512"/>
-				<imageExpression><![CDATA["E:/KaviProject/src/main/resources/img/LOGO.jpg"]]></imageExpression>
+				<reportElement x="-4" y="0" width="94" height="80" uuid="0977a5ff-c3a5-4a86-85b3-d42a102ca4d1"/>
+				<imageExpression><![CDATA["D:/2nd Semester/Pharmacy/src/main/resources/img/111.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

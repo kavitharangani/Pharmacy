@@ -11,10 +11,9 @@ import java.util.List;
 public interface CartPlaceOrderDAO extends CrudDAO<CartPlaceOrder> {
     boolean save(String orderId, LocalDate now, String customerId, double total) throws SQLException;
 
+    boolean save(String orderId, List<CartPlaceOrderDTO> dtoList) throws SQLException;
 
-    boolean save(String orderId, List<CartPlaceOrderDTO> dtoList);
-
-    boolean updateQtySupplies(List<CartPlaceOrderDTO> dtoList);
+    boolean updateQtySupplies(List<CartPlaceOrderDTO> dtoList) throws SQLException;
 
     ;
 }

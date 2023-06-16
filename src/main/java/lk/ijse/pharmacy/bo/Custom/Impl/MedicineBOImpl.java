@@ -19,9 +19,7 @@ public class MedicineBOImpl implements MedicineBO, SuperBO {
     @Override
     public boolean delete(String id) throws SQLException {
         return medicineDAO.delete(id);
-
     }
-
 
     @Override
     public MedicineDTO search(String id) throws SQLException {
@@ -33,7 +31,6 @@ public class MedicineBOImpl implements MedicineBO, SuperBO {
     public boolean update(MedicineDTO medicine) throws SQLException {
        return medicineDAO.update(new Medicine(medicine.getMediCode(),medicine.getDescription(),medicine.getName(),medicine.getPackSize(),medicine.getUnitPrize(),medicine.getQtyOnStock()));
     }
-
 
     @Override
     public ArrayList<Medicine> countMedicines() throws SQLException{

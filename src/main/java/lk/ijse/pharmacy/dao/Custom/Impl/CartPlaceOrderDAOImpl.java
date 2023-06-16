@@ -27,13 +27,33 @@ public class CartPlaceOrderDAOImpl implements CartPlaceOrderDAO {
 
 
     @Override
-    public boolean save(String orderId, List<CartPlaceOrderDTO> dtoList) {
-        return false;
+    public boolean save(String orderId, List<CartPlaceOrderDTO> dtoList) throws SQLException {
+        for (CartPlaceOrderDTO dto : dtoList){
+            if (!save1(orderId,dto)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private  boolean save1(String orderId, CartPlaceOrderDTO dto) throws SQLException {
+        String sql = "INSERT INTO orderdetail VALUES (?,?,?)";
+        return CrudUtil.execute(sql,orderId,dto.getCode(),dto.getQty());
     }
 
     @Override
-    public boolean updateQtySupplies(List<CartPlaceOrderDTO> dtoList) {
-        return false;
+    public boolean updateQtySupplies(List<CartPlaceOrderDTO> dtoList) throws SQLException {
+        for (CartPlaceOrderDTO dto : dtoList){
+            if(!updateQtySupplies1(dto)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean updateQtySupplies1(CartPlaceOrderDTO dto) throws SQLException {
+        String sql = "UPDATE medicine SET qtyOnStock = (qtyOnStock - ?) WHERE mediCode = ?";
+        return CrudUtil.execute(sql,dto.getQty(),dto.getCode());
     }
 
     public String generateNextOrderId() throws SQLException {
